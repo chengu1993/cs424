@@ -1,0 +1,2728 @@
+<!DOCTYPE html><html>
+
+<head>
+<meta charset="utf-8">
+<title></title>
+<style>
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;font:inherit;font-size:100%;vertical-align:baseline}
+html{line-height:1}
+ol,ul{list-style:none}
+table{border-collapse:collapse;border-spacing:0;
+  margin-top: 0;
+  margin-bottom: 0.8em;
+}
+caption,th,td{text-align:left;font-weight:normal;vertical-align:middle}
+q,blockquote{quotes:none}
+q:before,q:after,blockquote:before,blockquote:after{content:"";content:none}
+a img{border:none}
+article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section,summary{display:block}
+a{color:#1863a1}
+a:visited{color:#751590}
+a:focus{color:#0181eb}
+a:hover{color:#0181eb}
+a:active{color:#01579f}
+aside.sidebar a{color:#222}
+aside.sidebar a:focus{color:#0181eb}
+aside.sidebar a:hover{color:#0181eb}
+aside.sidebar a:active{color:#01579f}
+a{-webkit-transition:color 0.3s;-moz-transition:color 0.3s;-o-transition:color 0.3s;transition:color 0.3s}
+
+body,h1,h2,h3,h4,h5,h6,footer{font-family:"PT Sans","Helvetica Neue","Optima","Hiragino Sans GB",sans-serif}
+body{line-height:1.5em;color:#222
+	-webkit-text-size-adjust:none;  min-width: 200px;
+  max-width: 760px;
+  margin: 0 auto; padding: 1em;}
+
+pre,code,tt,p code,li code{font-family:Menlo,Monaco,"Andale Mono","lucida console","Courier New",monospace}
+
+h1{font-size:2.2em;line-height:1.2em}
+
+h1,h2,h3,h4,h5,h6{text-rendering:optimizelegibility;margin-bottom:1em;font-weight:bold}
+h2,section h1{font-size:1.5em}
+h3,section h2,section section h1{font-size:1.3em}
+h4,section h3,section section h2,section section section h1{font-size:1em}
+h5,section h4,section section h3{font-size:.9em}
+h6,section h5,section section h4,section section section h3{font-size:.8em}
+.markdown-body{padding: 0px 4px;}
+.markdown-body h1{position:relative;padding-top:1em;padding-bottom:0.2em;margin-bottom:1em;background:url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAABCAYAAACsXeyTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAFUlEQVQIHWNIS0sr/v//PwMMDzY+ADqMahlW4J91AAAAAElFTkSuQmCC') bottom left repeat-x}
+.markdown-body  h1 a{text-decoration:none}
+.markdown-body  h1 a:hover{text-decoration:underline}
+
+.markdown-body h2{padding-top:0.8em;padding-bottom:0.2em;background:url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAABCAYAAACsXeyTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAFUlEQVQIHWNIS0sr/v//PwMMDzY+ADqMahlW4J91AAAAAElFTkSuQmCC') bottom left repeat-x}
+.markdown-body h2:first-child,.markdown-body header+h2{padding-top:0}
+.markdown-body h2:first-child,.markdown-body header+h2{background:none}
+
+
+
+p,.markdown-body blockquote,ul,ol{margin-bottom:0.8em; margin-top:0.8em;}
+ul{list-style-type:disc}
+ul ul{list-style-type:circle;margin-bottom:0px}
+ul ul ul{list-style-type:square;margin-bottom:0px}
+ol{list-style-type:decimal}
+ol ol{list-style-type:lower-alpha;margin-bottom:0px}
+ol ol ol{list-style-type:lower-roman;margin-bottom:0px}
+ul,ul ul,ul ol,ol,ol ul,ol ol{margin-left:1.3em}
+ul ul,ul ol,ol ul,ol ol{margin-bottom:0em}
+strong{font-weight:bold}
+em{font-style:italic}
+sup,sub{font-size:0.75em;position:relative;display:inline-block;padding:0 .2em;line-height:.8em}
+sup{top:-.5em}
+sub{bottom:-.5em}
+a[rev='footnote']{font-size:.75em;padding:0 .3em;line-height:1}
+q{font-style:italic}
+q:before{content:"\201C"}
+q:after{content:"\201D"}
+em,dfn{font-style:italic}
+strong,dfn{font-weight:bold}
+del,s{text-decoration:line-through}
+abbr,acronym{border-bottom:1px dotted;cursor:help}
+small{font-size:.8em}
+big{font-size:1.2em}
+
+.markdown-body hr {
+  height: 0;
+  margin: 15px 0;
+  overflow: hidden;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.markdown-body hr:before {
+  display: table;
+  content: "";
+}
+
+.markdown-body hr:after {
+  display: table;
+  clear: both;
+  content: "";
+}
+
+
+.markdown-body table {
+  display: block;
+  width: 100%;
+  overflow: auto;
+  word-break: normal;
+  word-break: keep-all;
+}
+
+.markdown-body table th {
+  font-weight: bold;
+}
+
+.markdown-body table th,
+.markdown-body table td {
+  padding: 6px 13px;
+  border: 1px solid #ddd;
+}
+
+.markdown-body table tr {
+  background-color: #fff;
+  border-top: 1px solid #ccc;
+}
+
+.markdown-body table tr:nth-child(2n) {
+  background-color: #f8f8f8;
+}
+
+.markdown-body blockquote{font-style:italic;position:relative;font-size:1.2em;line-height:1.5em;padding-left:1em;border-left:4px solid rgba(170,170,170,0.5)}
+.markdown-body blockquote cite{font-style:italic}
+.markdown-body blockquote cite a{color:#aaa !important;word-wrap:break-word}
+.markdown-body blockquote cite:before{content:'\2014';padding-right:.3em;padding-left:.3em;color:#aaa}
+
+.markdown-body a{white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space:-o-pre-wrap;white-space:pre-wrap;word-wrap:break-word}
+
+body>header{font-size:1em;padding-top:1.5em;padding-bottom:1.5em}
+.markdown-body{overflow:hidden}
+.markdown-body>div,.markdown-body>article{width:100%}
+aside.sidebar{float:none;padding:0 18px 1px;background-color:#f7f7f7;border-top:1px solid #e0e0e0}
+.flex-content,article img,article video,article .flash-video,aside.sidebar img{max-width:100%;height:auto}
+.basic-alignment.left,article img.left,article video.left,article .left.flash-video,aside.sidebar img.left{float:left;margin-right:1.5em}
+.basic-alignment.right,article img.right,article video.right,article .right.flash-video,aside.sidebar img.right{float:right;margin-left:1.5em}
+.basic-alignment.center,article img.center,article video.center,article .center.flash-video,aside.sidebar img.center{display:block;margin:0 auto 1.5em}
+.basic-alignment.left,article img.left,article video.left,article .left.flash-video,aside.sidebar img.left,.basic-alignment.right,article img.right,article video.right,article .right.flash-video,aside.sidebar img.right{margin-bottom:.8em}
+.toggle-sidebar,.no-sidebar .toggle-sidebar{display:none}
+
+
+.markdown-body img,.markdown-body video,.markdown-body .flash-video{ -webkit-border-radius:0.3em;-moz-border-radius:0.3em;-ms-border-radius:0.3em;-o-border-radius:0.3em;border-radius:0.3em;-webkit-box-shadow:rgba(0,0,0,0.15) 0 1px 4px;-moz-box-shadow:rgba(0,0,0,0.15) 0 1px 4px;box-shadow:rgba(0,0,0,0.15) 0 1px 4px;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;border:#fff 0.5em solid;}
+
+.markdown-body img,.markdown-body video{max-width: 100%;}
+.markdown-body video,.markdown-body .flash-video{margin:0 auto 1.5em}
+.markdown-body video{display:block;width:100%}
+.markdown-body .flash-video>div{position:relative;display:block;padding-bottom:56.25%;padding-top:1px;height:0;overflow:hidden}
+.markdown-body .flash-video>div iframe,.markdown-body .flash-video>div object,.markdown-body .flash-video>div embed{position:absolute;top:0;left:0;width:100%;height:100%}
+.markdown-body>footer{padding-bottom:2.5em;margin-top:2em}
+.markdown-body>footer p.meta{margin-bottom:.8em;font-size:.85em;clear:both;overflow:hidden}
+
+
+body,pre{ background:#fdf6e3 url('data:image/png;base64,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') top left;}
+body{ background-color: #f8f8f8;}
+pre{-webkit-border-radius:0.4em;-moz-border-radius:0.4em;-ms-border-radius:0.4em;-o-border-radius:0.4em;border-radius:0.4em;border:1px solid #e7dec3;line-height:1.45em;font-size:13px;margin-bottom:2.1em;padding:.8em 1em;color:#586e75;overflow:auto}
+.markdown-body code{background: none;}
+h3.filename+pre{-moz-border-radius-topleft:0px;-webkit-border-top-left-radius:0px;border-top-left-radius:0px;-moz-border-radius-topright:0px;-webkit-border-top-right-radius:0px;border-top-right-radius:0px}
+p code,li code{display:inline-block;white-space:no-wrap;background:#fff;font-size:.8em;line-height:1.5em;color:#555;border:1px solid #ddd;-webkit-border-radius:0.4em;-moz-border-radius:0.4em;-ms-border-radius:0.4em;-o-border-radius:0.4em;border-radius:0.4em;padding:0 .3em;margin:-1px 0}
+p pre code,li pre code{font-size:1em !important;background:none;border:none}
+
+/*
+
+Orginal Style from ethanschoonover.com/solarized (c) Jeremy Hull <sourdrums@gmail.com>
+
+*/
+
+.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
+  background: #fdf6e3;
+  color: #657b83;
+  -webkit-text-size-adjust: none;
+}
+
+.hljs-comment,
+.diff .hljs-header,
+.hljs-doctype,
+.hljs-pi,
+.lisp .hljs-string {
+  color: #93a1a1;
+}
+
+/* Solarized Green */
+.hljs-keyword,
+.hljs-winutils,
+.method,
+.hljs-addition,
+.css .hljs-tag,
+.hljs-request,
+.hljs-status,
+.nginx .hljs-title {
+  color: #859900;
+}
+
+/* Solarized Cyan */
+.hljs-number,
+.hljs-command,
+.hljs-string,
+.hljs-tag .hljs-value,
+.hljs-rule .hljs-value,
+.hljs-doctag,
+.tex .hljs-formula,
+.hljs-regexp,
+.hljs-hexcolor,
+.hljs-link_url {
+  color: #2aa198;
+}
+
+/* Solarized Blue */
+.hljs-title,
+.hljs-localvars,
+.hljs-chunk,
+.hljs-decorator,
+.hljs-built_in,
+.hljs-identifier,
+.vhdl .hljs-literal,
+.hljs-id,
+.css .hljs-function,
+.hljs-name {
+  color: #268bd2;
+}
+
+/* Solarized Yellow */
+.hljs-attribute,
+.hljs-variable,
+.lisp .hljs-body,
+.smalltalk .hljs-number,
+.hljs-constant,
+.hljs-class .hljs-title,
+.hljs-parent,
+.hljs-type,
+.hljs-link_reference {
+  color: #b58900;
+}
+
+/* Solarized Orange */
+.hljs-preprocessor,
+.hljs-preprocessor .hljs-keyword,
+.hljs-pragma,
+.hljs-shebang,
+.hljs-symbol,
+.hljs-symbol .hljs-string,
+.diff .hljs-change,
+.hljs-special,
+.hljs-attr_selector,
+.hljs-subst,
+.hljs-cdata,
+.css .hljs-pseudo,
+.hljs-header {
+  color: #cb4b16;
+}
+
+/* Solarized Red */
+.hljs-deletion,
+.hljs-important {
+  color: #dc322f;
+}
+
+/* Solarized Violet */
+.hljs-link_label {
+  color: #6c71c4;
+}
+
+.tex .hljs-formula {
+  background: #eee8d5;
+}
+
+
+</style>
+
+<style> @media print{ .hljs{overflow: visible; word-wrap: break-word !important;} }</style></head><body><div class="markdown-body">
+<h1 id="toc_0">Chen GU Assignment 3 CPSC 424</h1>
+
+<h2 id="toc_1">Building and running information</h2>
+
+<h3 id="toc_2">Development environment</h3>
+
+<h4 id="toc_3">Module loaded</h4>
+
+<pre><code>[cg736@compute-33-1 task2]$ module list
+Currently Loaded Modulefiles:
+  1) Base/yale_hpc               2) Langs/Intel/15              3) MPI/OpenMPI/1.8.6-intel15
+</code></pre>
+
+<h4 id="toc_4">env command</h4>
+
+<pre><code>[cg736@compute-33-1 task2]$ env
+MKLROOT=/home/apps/fas/Langs/Intel/2015_update2/composer_xe_2015.2.164/mkl
+MANPATH=/usr/local/cluster/hpc/MPI/OpenMPI/1.8.6-intel15/share/man:/home/apps/fas/Langs/Intel/2015_update2/composer_xe_2015.2.164/man/en_US:/home/apps/fas/Langs/Intel/2015_update2/composer_xe_2015.2.164/debugger/gdb/intel64/share/man/:/home/apps/fas/Langs/Intel/2015_update2/composer_xe_2015.2.164/debugger/gdb/intel64_mic/share/man/:/usr/share/man:/opt/moab/share/man:
+GDB_HOST=/home/apps/fas/Langs/Intel/2015_update2/composer_xe_2015.2.164/debugger/gdb/intel64_mic/bin/gdb-ia-mic
+HOSTNAME=compute-33-1.local
+IPPROOT=/home/apps/fas/Langs/Intel/2015_update2/composer_xe_2015.2.164/ipp
+INTEL_LICENSE_FILE=/home/apps/fas/Langs/Intel/2015_update2/composer_xe_2015.2.164/licenses:/opt/intel/licenses:/home/apps/fas/Licenses/intel_site.lic
+TERM=xterm-256color
+SHELL=/bin/bash
+HISTSIZE=1000
+GDBSERVER_MIC=/home/apps/fas/Langs/Intel/2015_update2/composer_xe_2015.2.164/debugger/gdb/target/mic/bin/gdbserver
+SSH_CLIENT=10.191.63.252 58237 22
+LIBRARY_PATH=/usr/local/cluster/hpc/MPI/OpenMPI/1.8.6-intel15/lib:/home/apps/fas/Langs/Intel/2015_update2/composer_xe_2015.2.164/ipp/../compiler/lib/intel64:/home/apps/fas/Langs/Intel/2015_update2/composer_xe_2015.2.164/ipp/lib/intel64:/home/apps/fas/Langs/Intel/2015_update2/composer_xe_2015.2.164/compiler/lib/intel64:/home/apps/fas/Langs/Intel/2015_update2/composer_xe_2015.2.164/mkl/lib/intel64:/home/apps/fas/Langs/Intel/2015_update2/composer_xe_2015.2.164/tbb/lib/intel64/gcc4.4
+PERL5LIB=/opt/moab/lib/perl5
+FPATH=/usr/local/cluster/hpc/MPI/OpenMPI/1.8.6-intel15/include:/home/apps/fas/Langs/Intel/2015_update2/composer_xe_2015.2.164/mkl/include
+QTDIR=/usr/lib64/qt-3.3
+QTINC=/usr/lib64/qt-3.3/include
+MIC_LD_LIBRARY_PATH=/home/apps/fas/Langs/Intel/2015_update2/composer_xe_2015.2.164/mpirt/lib/mic:/home/apps/fas/Langs/Intel/2015_update2/composer_xe_2015.2.164/ipp/lib/mic:/home/apps/fas/Langs/Intel/2015_update2/composer_xe_2015.2.164/compiler/lib/mic:/home/apps/fas/Langs/Intel/2015_update2/composer_xe_2015.2.164/mkl/lib/mic:/opt/intel/mic/coi/device-linux-release/lib:/opt/intel/mic/myo/lib:/home/apps/fas/Langs/Intel/2015_update2/composer_xe_2015.2.164/tbb/lib/mic
+SSH_TTY=/dev/pts/20
+ANT_HOME=/opt/rocks
+USER=cg736
+LD_LIBRARY_PATH=/usr/local/cluster/hpc/MPI/OpenMPI/1.8.6-intel15/lib:/home/apps/fas/Langs/Intel/2015_update2/composer_xe_2015.2.164/mpirt/lib/intel64:/home/apps/fas/Langs/Intel/2015_update2/composer_xe_2015.2.164/ipp/../compiler/lib/intel64:/home/apps/fas/Langs/Intel/2015_update2/composer_xe_2015.2.164/ipp/lib/intel64:/home/apps/fas/Langs/Intel/2015_update2/composer_xe_2015.2.164/ipp/tools/intel64/perfsys:/opt/intel/mic/coi/host-linux-release/lib:/opt/intel/mic/myo/lib:/home/apps/fas/Langs/Intel/2015_update2/composer_xe_2015.2.164/compiler/lib/intel64:/home/apps/fas/Langs/Intel/2015_update2/composer_xe_2015.2.164/mkl/lib/intel64:/home/apps/fas/Langs/Intel/2015_update2/composer_xe_2015.2.164/tbb/lib/intel64/gcc4.4:/home/apps/fas/Langs/Intel/2015_update2/composer_xe_2015.2.164/debugger/ipt/intel64/lib
+MIC_LIBRARY_PATH=/home/apps/fas/Langs/Intel/2015_update2/composer_xe_2015.2.164/compiler/lib/mic:/home/apps/fas/Langs/Intel/2015_update2/composer_xe_2015.2.164/mpirt/lib/mic:/home/apps/fas/Langs/Intel/2015_update2/composer_xe_2015.2.164/tbb/lib/mic
+ROCKS_ROOT=/opt/rocks
+CPATH=/usr/local/cluster/hpc/MPI/OpenMPI/1.8.6-intel15/include:/home/apps/fas/Langs/Intel/2015_update2/composer_xe_2015.2.164/ipp/include:/home/apps/fas/Langs/Intel/2015_update2/composer_xe_2015.2.164/mkl/include:/home/apps/fas/Langs/Intel/2015_update2/composer_xe_2015.2.164/tbb/include
+YHPC_COMPILER=Intel
+OMPI_MCA_orte_precondition_transports=f20cd2d28f432704-15e3f8c3bb8e89d6
+NLSPATH=/home/apps/fas/Langs/Intel/2015_update2/composer_xe_2015.2.164/compiler/lib/intel64/locale/%l_%t/%N:/home/apps/fas/Langs/Intel/2015_update2/composer_xe_2015.2.164/ipp/lib/intel64/locale/%l_%t/%N:/home/apps/fas/Langs/Intel/2015_update2/composer_xe_2015.2.164/mkl/lib/intel64/locale/%l_%t/%N:/home/apps/fas/Langs/Intel/2015_update2/composer_xe_2015.2.164/debugger/gdb/intel64_mic/share/locale/%l_%t/%N:/home/apps/fas/Langs/Intel/2015_update2/composer_xe_2015.2.164/debugger/gdb/intel64/share/locale/%l_%t/%N
+MAIL=/var/spool/mail/cg736
+PATH=/usr/local/cluster/hpc/MPI/OpenMPI/1.8.6-intel15/bin:/home/apps/fas/Langs/Intel/2015_update2/composer_xe_2015.2.164/bin/intel64:/home/apps/fas/Langs/Intel/2015_update2/composer_xe_2015.2.164/mpirt/bin/intel64:/home/apps/fas/Langs/Intel/2015_update2/composer_xe_2015.2.164/debugger/gdb/intel64_mic/bin:/home/apps/fas/Langs/Intel/2015_update2/composer_xe_2015.2.164/debugger/gdb/intel64/bin:/home/apps/fas/Modules:/usr/lib64/qt-3.3/bin:/opt/moab/bin:/usr/local/bin:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/java/latest/bin:/opt/rocks/bin:/opt/rocks/sbin:/home/apps/bin:/home/fas/cpsc424/cg736/bin
+YHPC_COMPILER_MINOR=164
+TBBROOT=/home/apps/fas/Langs/Intel/2015_update2/composer_xe_2015.2.164/tbb
+C_INCLUDE_PATH=/usr/local/cluster/hpc/MPI/OpenMPI/1.8.6-intel15/include
+F90=ifort
+PWD=/home/fas/cpsc424/cg736/as/as3/task2
+_LMFILES_=/home/apps/fas/Modules/Base/yale_hpc:/home/apps/fas/Modules/Langs/Intel/15:/home/apps/fas/Modules/MPI/OpenMPI/1.8.6-intel15
+YHPC_COMPILER_MAJOR=2
+JAVA_HOME=/usr/java/latest
+GDB_CROSS=/home/apps/fas/Langs/Intel/2015_update2/composer_xe_2015.2.164/debugger/gdb/intel64_mic/bin/gdb-mic
+DOMAIN=omega
+LANG=en_US.iso885915
+MODULEPATH=/home/apps/fas/Modules
+MOABHOMEDIR=/opt/moab
+YHPC_COMPILER_RELEASE=2015
+LOADEDMODULES=Base/yale_hpc:Langs/Intel/15:MPI/OpenMPI/1.8.6-intel15
+KDEDIRS=/usr
+F77=ifort
+MPM_LAUNCHER=/home/apps/fas/Langs/Intel/2015_update2/composer_xe_2015.2.164/debugger/mpm/bin/start_mpm.sh
+CXX=icpc
+SSH_ASKPASS=/usr/libexec/openssh/gnome-ssh-askpass
+HISTCONTROL=ignoredups
+INTEL_PYTHONHOME=/home/apps/fas/Langs/Intel/2015_update2/composer_xe_2015.2.164/debugger/python/intel64/
+SHLVL=1
+HOME=/home/fas/cpsc424/cg736
+FC=ifort
+LOGNAME=cg736
+QTLIB=/usr/lib64/qt-3.3/lib
+CVS_RSH=ssh
+SSH_CONNECTION=10.191.63.252 58237 10.191.12.33 22
+MODULESHOME=/usr/share/Modules
+LESSOPEN=||/usr/bin/lesspipe.sh %s
+arch=intel64
+INFOPATH=/home/apps/fas/Langs/Intel/2015_update2/composer_xe_2015.2.164/debugger/gdb/intel64/share/info/:/home/apps/fas/Langs/Intel/2015_update2/composer_xe_2015.2.164/debugger/gdb/intel64_mic/share/info/
+CC=icc
+DISPLAY=localhost:11.0
+INCLUDE=/home/apps/fas/Langs/Intel/2015_update2/composer_xe_2015.2.164/mkl/include
+MPI_PATH=/usr/local/cluster/hpc/MPI/OpenMPI/1.8.6-intel15
+G_BROKEN_FILENAMES=1
+BASH_FUNC_module()=() {  eval `/usr/bin/modulecmd bash $*`
+}
+_=/bin/env
+OLDPWD=/home/fas/cpsc424/cg736/as/as3
+</code></pre>
+
+<h3 id="toc_5">How to run the code</h3>
+
+<p>The source code and scripts of different tasks are organized in sub directory <code>task1</code>, <code>task2</code>, <code>task3</code> and <code>task4</code> respectively. I achieved generalization in task4, so there will be no <code>task5</code> explicitly. </p>
+
+<p>To run the program, you can enter each sub directory and submit the job to running queue by typing:</p>
+
+<pre><code>qsub build-run-1node.sh
+qsub build-run-2node.sh
+qsub build-run-4node.sh
+</code></pre>
+
+<p>to run task in 1 node, 2 nodes and 4 nodes.</p>
+
+<h2 id="toc_6">Output and evaluation</h2>
+
+<h3 id="toc_7">task 1</h3>
+
+<p>The timing table of task 1 is:</p>
+
+<table>
+<thead>
+<tr>
+<th>N</th>
+<th>TIME (secs)</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>1000</td>
+<td>0.1803</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>2.2647</td>
+</tr>
+<tr>
+<td>4000</td>
+<td>19.7782</td>
+</tr>
+<tr>
+<td>8000</td>
+<td>157.3758</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="toc_8">task 2</h3>
+
+<p>First I will show the timing table in different number of nodes.</p>
+
+<h4 id="toc_9">1 node</h4>
+
+<p><strong>Sum of run time (seconds)</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>N\process</th>
+<th>1</th>
+<th>2</th>
+<th>4</th>
+<th>8</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>1000</td>
+<td>0.215885</td>
+<td>0.306475</td>
+<td>0.450074</td>
+<td>0.601574</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>2.425190</td>
+<td>3.044074</td>
+<td>3.201798</td>
+<td>3.871181</td>
+</tr>
+<tr>
+<td>4000</td>
+<td>20.018297</td>
+<td>27.781472</td>
+<td>40.754660</td>
+<td>51.995888</td>
+</tr>
+<tr>
+<td>8000</td>
+<td>156.696647</td>
+<td>216.887571</td>
+<td>318.749308</td>
+<td>430.594415</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>Sum of calculation time (seconds)</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>N#process</th>
+<th>1</th>
+<th>2</th>
+<th>4</th>
+<th>8</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>1000</td>
+<td>0.180325</td>
+<td>0.181510</td>
+<td>0.181630</td>
+<td>0.183803</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>2.293825</td>
+<td>1.842267</td>
+<td>1.454628</td>
+<td>1.450802</td>
+</tr>
+<tr>
+<td>4000</td>
+<td>19.498338</td>
+<td>19.158889</td>
+<td>20.352689</td>
+<td>22.637396</td>
+</tr>
+<tr>
+<td>8000</td>
+<td>154.397387</td>
+<td>154.995517</td>
+<td>174.747626</td>
+<td>210.237270</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>Sum of communication time (seconds)</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>N#process</th>
+<th>1</th>
+<th>2</th>
+<th>4</th>
+<th>8</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>1000</td>
+<td>0.035560</td>
+<td>0.124965</td>
+<td>0.268444</td>
+<td>0.417771</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>0.131365</td>
+<td>1.201807</td>
+<td>1.747170</td>
+<td>2.420380</td>
+</tr>
+<tr>
+<td>4000</td>
+<td>0.519959</td>
+<td>8.622583</td>
+<td>20.401971</td>
+<td>29.358492</td>
+</tr>
+<tr>
+<td>8000</td>
+<td>2.299260</td>
+<td>61.892054</td>
+<td>144.001682</td>
+<td>220.357145</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>Wall time on master in all (seconds)</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>N#process</th>
+<th>1</th>
+<th>2</th>
+<th>4</th>
+<th>8</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>1000</td>
+<td>0.215885</td>
+<td>0.153236</td>
+<td>0.112514</td>
+<td>0.075192</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>2.425190</td>
+<td>1.522035</td>
+<td>0.800454</td>
+<td>0.483901</td>
+</tr>
+<tr>
+<td>4000</td>
+<td>20.018297</td>
+<td>13.890735</td>
+<td>10.188668</td>
+<td>6.499490</td>
+</tr>
+<tr>
+<td>8000</td>
+<td>156.696647</td>
+<td>108.443788</td>
+<td>79.687322</td>
+<td>53.824303</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>Run time of different processes with node = 1 and p = 8</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>N\rank</th>
+<th>0</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>1000</td>
+<td>0.075782</td>
+<td>0.075777</td>
+<td>0.075781</td>
+<td>0.075777</td>
+<td>0.075782</td>
+<td>0.075777</td>
+<td>0.075781</td>
+<td>0.075777</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>0.492074</td>
+<td>0.492068</td>
+<td>0.492075</td>
+<td>0.492069</td>
+<td>0.492075</td>
+<td>0.492068</td>
+<td>0.492075</td>
+<td>0.492069</td>
+</tr>
+<tr>
+<td>4000</td>
+<td>6.477182</td>
+<td>6.477175</td>
+<td>6.477182</td>
+<td>6.477176</td>
+<td>6.477182</td>
+<td>6.477175</td>
+<td>6.477182</td>
+<td>6.477176</td>
+</tr>
+<tr>
+<td>8000</td>
+<td>53.639250</td>
+<td>53.639600</td>
+<td>53.639252</td>
+<td>53.639603</td>
+<td>53.639319</td>
+<td>53.639600</td>
+<td>53.639252</td>
+<td>53.639603</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>Calculation time of different processes with node = 1 and p = 8</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>N\rank</th>
+<th>0</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>1000</td>
+<td>0.004963</td>
+<td>0.012748</td>
+<td>0.019038</td>
+<td>0.023790</td>
+<td>0.027630</td>
+<td>0.030351</td>
+<td>0.032181</td>
+<td>0.033077</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>0.038482</td>
+<td>0.098632</td>
+<td>0.146372</td>
+<td>0.189089</td>
+<td>0.225180</td>
+<td>0.244387</td>
+<td>0.266633</td>
+<td>0.270409</td>
+</tr>
+<tr>
+<td>4000</td>
+<td>0.330335</td>
+<td>1.501045</td>
+<td>1.913409</td>
+<td>3.324615</td>
+<td>2.965752</td>
+<td>4.128365</td>
+<td>3.585741</td>
+<td>4.444161</td>
+</tr>
+<tr>
+<td>8000</td>
+<td>5.343690</td>
+<td>16.059922</td>
+<td>19.641841</td>
+<td>29.739247</td>
+<td>28.505883</td>
+<td>36.985279</td>
+<td>33.491720</td>
+<td>39.967321</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>Communication time of different processes with node = 1 and p = 8</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>N\rank</th>
+<th>0</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>1000</td>
+<td>0.070819</td>
+<td>0.063029</td>
+<td>0.056743</td>
+<td>0.051987</td>
+<td>0.048152</td>
+<td>0.045426</td>
+<td>0.043600</td>
+<td>0.042700</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>0.453592</td>
+<td>0.393436</td>
+<td>0.345703</td>
+<td>0.302980</td>
+<td>0.266896</td>
+<td>0.247681</td>
+<td>0.225442</td>
+<td>0.221660</td>
+</tr>
+<tr>
+<td>4000</td>
+<td>6.146847</td>
+<td>4.976130</td>
+<td>4.563774</td>
+<td>3.152560</td>
+<td>3.511430</td>
+<td>2.348810</td>
+<td>2.891441</td>
+<td>2.033015</td>
+</tr>
+<tr>
+<td>8000</td>
+<td>48.295560</td>
+<td>37.579678</td>
+<td>33.997411</td>
+<td>23.900356</td>
+<td>25.133435</td>
+<td>16.654321</td>
+<td>20.147532</td>
+<td>13.672282</td>
+</tr>
+</tbody>
+</table>
+
+<h4 id="toc_10">2 node</h4>
+
+<p><strong>Sum of run time (seconds)</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>N\process</th>
+<th>8</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>4000</td>
+<td>38.986054</td>
+</tr>
+<tr>
+<td>8000</td>
+<td>327.115337</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>Sum of calculation time (seconds)</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>N\process</th>
+<th>8</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>4000</td>
+<td>14.340157</td>
+</tr>
+<tr>
+<td>8000</td>
+<td>151.565007</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>Sum of communication time (seconds)</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>N\process</th>
+<th>8</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>4000</td>
+<td>24.645897</td>
+</tr>
+<tr>
+<td>8000</td>
+<td>175.550330</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>Wall time on master (seconds)</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>N\process</th>
+<th>8</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>4000</td>
+<td>4.873260</td>
+</tr>
+<tr>
+<td>8000</td>
+<td>40.889114</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>Run time of different processes with node = 2 and p = 8</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>N\rank</th>
+<th>0</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>4000</td>
+<td>4.873260</td>
+<td>4.873252</td>
+<td>4.873259</td>
+<td>4.873249</td>
+<td>4.873263</td>
+<td>4.873254</td>
+<td>4.873263</td>
+<td>4.873254</td>
+</tr>
+<tr>
+<td>8000</td>
+<td>40.889114</td>
+<td>40.889127</td>
+<td>40.890290</td>
+<td>40.890305</td>
+<td>40.889115</td>
+<td>40.889128</td>
+<td>40.889123</td>
+<td>40.889135</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>Calculation time of different processes with node = 2 and p = 8</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>N\rank</th>
+<th>0</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>4000</td>
+<td>0.274690</td>
+<td>0.717409</td>
+<td>1.105907</td>
+<td>1.558488</td>
+<td>2.209476</td>
+<td>2.626210</td>
+<td>2.879928</td>
+<td>2.968050</td>
+</tr>
+<tr>
+<td>8000</td>
+<td>2.407413</td>
+<td>9.197259</td>
+<td>15.224698</td>
+<td>19.581344</td>
+<td>23.258097</td>
+<td>25.783810</td>
+<td>27.688041</td>
+<td>28.424343--</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>Communication time of different processes with node = 2 and p = 8</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>N\rank</th>
+<th>0</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>4000</td>
+<td>4.598570</td>
+<td>4.155843</td>
+<td>3.767352</td>
+<td>3.314761</td>
+<td>2.663787</td>
+<td>2.247044</td>
+<td>1.993335</td>
+<td>1.905204</td>
+</tr>
+<tr>
+<td>8000</td>
+<td>38.481701</td>
+<td>31.691868</td>
+<td>25.665592</td>
+<td>21.308961</td>
+<td>17.631017</td>
+<td>15.105318</td>
+<td>13.201082</td>
+<td>12.464792</td>
+</tr>
+</tbody>
+</table>
+
+<h4 id="toc_11">4 node</h4>
+
+<p><strong>Sum of run time (seconds)</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>N\process</th>
+<th>8</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>4000</td>
+<td>38.808209</td>
+</tr>
+<tr>
+<td>8000</td>
+<td>326.889003</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>Sum of calculation time (seconds)</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>N\process</th>
+<th>8</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>4000</td>
+<td>14.346653</td>
+</tr>
+<tr>
+<td>8000</td>
+<td>151.519507</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>Sum of communication time (seconds)</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>N\process</th>
+<th>8</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>4000</td>
+<td>24.461557</td>
+</tr>
+<tr>
+<td>8000</td>
+<td>175.369496</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>Wall time on master in all (seconds)</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>N\process</th>
+<th>8</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>4000</td>
+<td>4.851024</td>
+</tr>
+<tr>
+<td>8000</td>
+<td>40.861116</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>Run time of different processes with node = 4 and p = 8</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>N\rank</th>
+<th>0</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>4000</td>
+<td>4.834240</td>
+<td>4.834240</td>
+<td>4.834240</td>
+<td>4.834238</td>
+<td>4.834243</td>
+<td>4.834242</td>
+<td>4.834242</td>
+<td>4.834242</td>
+</tr>
+<tr>
+<td>8000</td>
+<td>40.909679</td>
+<td>40.909693</td>
+<td>40.909686</td>
+<td>40.909700</td>
+<td>40.909677</td>
+<td>40.909691</td>
+<td>40.909687</td>
+<td>40.909700</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>Calculation time of different processes with node = 4 and p = 8</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>N\rank</th>
+<th>0</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>4000</td>
+<td>0.274826</td>
+<td>0.717464</td>
+<td>1.112987</td>
+<td>1.573690</td>
+<td>2.179168</td>
+<td>2.638708</td>
+<td>2.886416</td>
+<td>2.948114</td>
+</tr>
+<tr>
+<td>8000</td>
+<td>2.390041</td>
+<td>9.159568</td>
+<td>15.245518</td>
+<td>19.592423</td>
+<td>23.271797</td>
+<td>25.822184</td>
+<td>27.655274</td>
+<td>28.372152</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>Communication time of different processes with node = 4 and p = 8</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>N\rank</th>
+<th>0</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>4000</td>
+<td>4.559414</td>
+<td>4.116776</td>
+<td>3.721253</td>
+<td>3.260548</td>
+<td>2.655075</td>
+<td>2.195534</td>
+<td>1.947826</td>
+<td>1.886128</td>
+</tr>
+<tr>
+<td>8000</td>
+<td>38.519638</td>
+<td>31.750125</td>
+<td>25.664168</td>
+<td>21.317277</td>
+<td>17.637880</td>
+<td>15.087507</td>
+<td>13.254413</td>
+<td>12.537548</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>Performance Discussion</strong><br/>
+We can see that with number of nodes and number of processors increasing, the performance is getting better. If fix the size of task to be 8000 and number of nodes to be 1, from the tables above, we can see that it takes 156.696647 seconds for a single process to do the multiplication, which is almost the same the serial program. However, it only takes 108.443788, 79.687322 and 53.824303 seconds for program with 2, 4, and 8 processes respectively. The wall time needed decreases when the number of processes increase.</p>
+
+<p><strong>Scalability discussion</strong><br/>
+Since in task2 we use blocking method, the communication overhead is huge especially when there are multiple processes. The tables shows that the overall time spent on communication is more than the time spent on calculation when <code>p=8</code> and <code>#node=2</code>. It takes about 40 seconds with 2 nodes and 8 processors. When I increase the number of nodes to be 4 and fix the number of processors to be 8, it still need approximately 40 seconds. This demonstrates that now communication overhead becomes the bottleneck the performance gain. Overall, using block method will not scale well.</p>
+
+<p><strong>Load Balance discussion</strong><br/>
+The load balance is terrible because we give each process unbalanced amount of work. Let&#39;s see an example. If <code>N=6</code> and there are 3 processes. Each process will get 2-row block. Process 0 will get 3 elements while process 2 will get 11 elements.</p>
+
+<pre><code>x
+x x
+
+...
+x x x x x
+x x x x x x
+</code></pre>
+
+<p>Each process will use these row block to calculate partial result throughout the whole process and it is not fair. And it&#39;s the same for column block. In each iteration, each process will get different number of elements. The process with light workload will just sit there and waiting while others with heavy workload is doing most calculations. This is proven by the result, in the table <strong>Calculation time of different processes with node = 4 and = 8</strong>, when <code>N=8000</code>, process 0 work only for 2.39 seconds while process 7 works for 28.37 seconds.</p>
+
+<p><strong>Suggestion</strong><br/>
+1. We can use non-blocking method rather than blocking method. Thus we can overlay communication and computation. And the expectation by doing so is that we can reduce wall time required to perform the multiplication.<br/>
+2. We can split the work more evenly, so that we can achieve better load balancing. One solution would be assign the block based on the number of elements rather than number of rows. The expectation by doing so is that each process can work for nearly same amount of time.<br/>
+3. If we adopt previous two methods, the scalability will be improved significantly. Since the communication overhead introduced by adding more processors are now overplayed by computation and computation are more balanced, we can achieve better performance when adding more computing resources.</p>
+
+<p><strong>Conclusion</strong><br/>
+Comparing the table with <code>P = 8</code> we can see that when number of nodes increases from 1 to 2, the overall wall time decreases by 8 seconds. But when number of nodes goes from 2 to 4, we cannot see any performance gain. It may be restrained by blocking communication and unbalanced workload.</p>
+
+<h3 id="toc_12">task 3</h3>
+
+<p>We can overlay computation and communication in order to have better performance. In each iteration, we can first use non-blocking send and receive to send and receive data, followed by calculation. But to support that, we need to use 2 buffers to send and receive data simultaneously. The pseudo code looks like following:</p>
+
+<pre><code>    buffer1, buffer2;
+    for(int i=0; i&lt;size; i++){
+        //non blocking send using buffer1
+        //non blocking receive using buffer2
+        //calculation;
+        //swap buffer1 and buffer2
+    }
+</code></pre>
+
+<h4 id="toc_13">1 node</h4>
+
+<p><strong>Sum of run time (seconds)</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>N\process</th>
+<th>1</th>
+<th>2</th>
+<th>4</th>
+<th>8</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>4000</td>
+<td>19.511368</td>
+<td>26.903194</td>
+<td>39.570196</td>
+<td>47.681605</td>
+</tr>
+<tr>
+<td>8000</td>
+<td>154.651165</td>
+<td>214.007184</td>
+<td>318.885342</td>
+<td>402.790415</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>Sum of calculation time (seconds)</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>N#process</th>
+<th>1</th>
+<th>2</th>
+<th>4</th>
+<th>8</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>4000</td>
+<td>19.448634</td>
+<td>19.184422</td>
+<td>20.755363</td>
+<td>24.934153</td>
+</tr>
+<tr>
+<td>8000</td>
+<td>154.412760</td>
+<td>155.041986</td>
+<td>177.776433</td>
+<td>226.791586</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>Sum of communication time (seconds)</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>N#process</th>
+<th>1</th>
+<th>2</th>
+<th>4</th>
+<th>8</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>4000</td>
+<td>0.062734</td>
+<td>7.718772</td>
+<td>18.814833</td>
+<td>22.747452</td>
+</tr>
+<tr>
+<td>8000</td>
+<td>0.238405</td>
+<td>58.965198</td>
+<td>141.108909</td>
+<td>175.998830</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>Wall time on master in all (seconds)</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>N#process</th>
+<th>1</th>
+<th>2</th>
+<th>4</th>
+<th>8</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>4000</td>
+<td>19.511368</td>
+<td>13.451597</td>
+<td>9.892548</td>
+<td>5.960212</td>
+</tr>
+<tr>
+<td>8000</td>
+<td>154.651165</td>
+<td>107.0035928</td>
+<td>79.721335</td>
+<td>50.348802</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>Run time of different processes with node = 1 and p = 8</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>N\rank</th>
+<th>0</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>4000</td>
+<td>5.960212</td>
+<td>5.960190</td>
+<td>5.960209</td>
+<td>5.960193</td>
+<td>5.960213</td>
+<td>5.960190</td>
+<td>5.960207</td>
+<td>5.960192</td>
+</tr>
+<tr>
+<td>8000</td>
+<td>50.348802</td>
+<td>50.348804</td>
+<td>50.348797</td>
+<td>50.348805</td>
+<td>50.348801</td>
+<td>50.348804</td>
+<td>50.348797</td>
+<td>50.348805</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>Calculation time of different processes with node = 1 and p = 8</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>N\rank</th>
+<th>0</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>4000</td>
+<td>0.403713</td>
+<td>1.884659</td>
+<td>2.299092</td>
+<td>3.610072</td>
+<td>3.427107</td>
+<td>4.512747</td>
+<td>3.954035</td>
+<td>4.842727</td>
+</tr>
+<tr>
+<td>8000</td>
+<td>6.297138</td>
+<td>17.969836</td>
+<td>21.775928</td>
+<td>32.747183</td>
+<td>31.339777</td>
+<td>38.457060</td>
+<td>35.317988</td>
+<td>42.886676</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>Communication time of different processes with node = 1 and p = 8</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>N\rank</th>
+<th>0</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>4000</td>
+<td>5.556499</td>
+<td>4.075531</td>
+<td>3.661117</td>
+<td>2.350121</td>
+<td>2.533106</td>
+<td>1.447443</td>
+<td>2.006172</td>
+<td>1.117465</td>
+</tr>
+<tr>
+<td>8000</td>
+<td>44.051664</td>
+<td>32.378968</td>
+<td>28.572869</td>
+<td>17.601622</td>
+<td>19.009024</td>
+<td>11.891744</td>
+<td>15.030809</td>
+<td>7.462129</td>
+</tr>
+</tbody>
+</table>
+
+<h4 id="toc_14">2 node</h4>
+
+<p><strong>Sum of run time (seconds)</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>N\process</th>
+<th>8</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>4000</td>
+<td>35.731653</td>
+</tr>
+<tr>
+<td>8000</td>
+<td>304.465445</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>Sum of calculation time (seconds)</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>N\process</th>
+<th>8</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>4000</td>
+<td>17.742337</td>
+</tr>
+<tr>
+<td>8000</td>
+<td>175.048904</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>Sum of communication time (seconds)</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>N\process</th>
+<th>8</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>4000</td>
+<td>17.989316</td>
+</tr>
+<tr>
+<td>8000</td>
+<td>129.416540</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>Wall time on master (seconds)</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>N\process</th>
+<th>8</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>4000</td>
+<td>4.466458</td>
+</tr>
+<tr>
+<td>8000</td>
+<td>38.058177</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>Run time of different processes with node = 2 and p = 8</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>N\rank</th>
+<th>0</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>4000</td>
+<td>4.466458</td>
+<td>4.466458</td>
+<td>4.466454</td>
+<td>4.466458</td>
+<td>4.466457</td>
+<td>4.466456</td>
+<td>4.466454</td>
+<td>4.466457</td>
+</tr>
+<tr>
+<td>8000</td>
+<td>38.058177</td>
+<td>38.058181</td>
+<td>38.058177</td>
+<td>38.058181</td>
+<td>38.058180</td>
+<td>38.058184</td>
+<td>38.058181</td>
+<td>38.058184</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>Calculation time of different processes with node = 2 and p = 8</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>N\rank</th>
+<th>0</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>4000</td>
+<td>0.275102</td>
+<td>0.758431</td>
+<td>1.122159</td>
+<td>1.678776</td>
+<td>2.989252</td>
+<td>3.644583</td>
+<td>3.429223</td>
+<td>3.844810</td>
+</tr>
+<tr>
+<td>8000</td>
+<td>3.310198</td>
+<td>10.721182</td>
+<td>15.598748</td>
+<td>20.754223</td>
+<td>27.493846</td>
+<td>31.306489</td>
+<td>31.996944</td>
+<td>33.867274</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>Communication time of different processes with node = 2 and p = 8</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>N\rank</th>
+<th>0</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>4000</td>
+<td>4.191356</td>
+<td>3.708027</td>
+<td>3.344295</td>
+<td>2.787682</td>
+<td>1.477205</td>
+<td>0.821874</td>
+<td>1.037231</td>
+<td>0.621647</td>
+</tr>
+<tr>
+<td>8000</td>
+<td>34.747979</td>
+<td>27.336998</td>
+<td>22.459429</td>
+<td>17.303957</td>
+<td>10.564334</td>
+<td>6.751695</td>
+<td>6.061237</td>
+<td>4.190910</td>
+</tr>
+</tbody>
+</table>
+
+<h4 id="toc_15">4 node</h4>
+
+<p><strong>Sum of run time (seconds)</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>N\process</th>
+<th>8</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>4000</td>
+<td>30.713541</td>
+</tr>
+<tr>
+<td>8000</td>
+<td>265.287153</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>Sum of calculation time (seconds)</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>N\process</th>
+<th>8</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>4000</td>
+<td>14.347817</td>
+</tr>
+<tr>
+<td>8000</td>
+<td>151.678206</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>Sum of communication time (seconds)</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>N\process</th>
+<th>8</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>4000</td>
+<td>16.365724</td>
+</tr>
+<tr>
+<td>8000</td>
+<td>113.608947</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>Wall time on master in all (seconds)</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>N\process</th>
+<th>8</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>4000</td>
+<td>3.839191</td>
+</tr>
+<tr>
+<td>8000</td>
+<td>33.160886</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>Run time of different processes with node = 4 and p = 8</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>N\rank</th>
+<th>0</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>4000</td>
+<td>3.839191</td>
+<td>3.839193</td>
+<td>3.839192</td>
+<td>3.839194</td>
+<td>3.839192</td>
+<td>3.839194</td>
+<td>3.839192</td>
+<td>3.839193</td>
+</tr>
+<tr>
+<td>8000</td>
+<td>33.160886</td>
+<td>33.160891</td>
+<td>33.160894</td>
+<td>33.160897</td>
+<td>33.160892</td>
+<td>33.160897</td>
+<td>33.160896</td>
+<td>33.160900</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>Calculation time of different processes with node = 4 and p = 8</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>N\rank</th>
+<th>0</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>4000</td>
+<td>0.274826</td>
+<td>0.716101</td>
+<td>1.123325</td>
+<td>1.578339</td>
+<td>2.182287</td>
+<td>2.619420</td>
+<td>2.891537</td>
+<td>2.961982</td>
+</tr>
+<tr>
+<td>8000</td>
+<td>2.399635</td>
+<td>9.184794</td>
+<td>15.245746</td>
+<td>19.581521</td>
+<td>23.288280</td>
+<td>25.796413</td>
+<td>27.802450</td>
+<td>28.379367</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>Communication time of different processes with node = 4 and p = 8</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>N\rank</th>
+<th>0</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>4000</td>
+<td>3.564365</td>
+<td>3.123092</td>
+<td>2.715867</td>
+<td>2.260855</td>
+<td>1.656905</td>
+<td>1.219774</td>
+<td>0.947655</td>
+<td>0.877211</td>
+</tr>
+<tr>
+<td>8000</td>
+<td>30.761251</td>
+<td>23.976097</td>
+<td>17.915148</td>
+<td>13.579376</td>
+<td>9.872612</td>
+<td>7.364484</td>
+<td>5.358445</td>
+<td>4.781533</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>Difference between task 2 in performance and explanation</strong><br/>
+When <code>N=8000, p=8</code>, the wall time needed by task 2 is 53, 40 and 40 seconds when there are 1, 2 and 4 nodes respectively. As a comparison, the wall time needed by task 3 is 50, 38 and 33 seconds. In task2, more time is spent on communication while in task 3, more time is spent on calculation. The performance gain may not seem substantial at first look, but <code>8000</code> is still a relative small scale, if <code>N</code> is much larger, then the improvement in performance will be more significant.</p>
+
+<p><strong>Difference between task 2 in scalability and explanation</strong><br/>
+The scalability of task 3 is slightly better than task 2 because by using non-blocking message passing, process with heavy workload does not wail util it finishes its calculation to send and receive B block. The communication overhead is now offset by the overlay of communication and computation. In task2, the total communication cost is 175 seconds when <code>p=8, node=4, N=8000</code>, but in task 3, it is merely 113 seconds. With smaller communication overhead, program works faster when N is huge and scales better when there are multiple processors and nodes.</p>
+
+<p><strong>Difference between task 2 in load balance and explanation</strong><br/>
+The table <strong>Calculation time of different processes with node = 4 and p 8</strong> illustrates that the uneven workload problem still exists in task 3. Process 0 only works for 2.39 seconds while process 7 works for 28.37 seconds. This is because the master adopts the same distribution strategy. Using non-blocking message passing method cannot address that problem. We need a better strategy in terms of workload distribution.</p>
+
+<h3 id="toc_16">task 4</h3>
+
+<p>As discussed in task2, the reason why the load balancing works not very well is because the master does not split the work evenly. Here I came up with a very simple strategy to solve this problem. If the size of matrix is <code>N</code>, then there will be <code>N(N+1)/2</code> elements in <code>A</code> and <code>B</code>. Let&#39;s denote number of processes as <code>size</code>. Ideally, each process should get <code>N(N+1)/2/size</code> elements. We use <code>avg</code> to represent <code>N(N+1)/2/size</code> in the following discussion. The master tries to send rows to processes starting from row 0. Each process should at least get one row. Let <code>cur_size</code> denote the current number of elements master want to send to next process. If <code>cur_size</code> plus next row of elements still smaller than <code>avg</code>, the master send that row to the process until <code>cur_size</code> is lager than <code>avg</code>. For process 0 to size-2, we use this approach to send out row and column blocks. For process size-1, it will receive all remaining row and column block. Such strategy can shown in following pseudo code.</p>
+
+<pre><code>        avg = (N+1) * N / 2;
+        for(i=0; i&lt;size-1; i++) {
+        int cur_size = row_size[idx++]; // each process at least get one row
+            while(cur_size + row_size[idx] &lt; avg){
+                cur_size += row_size[idx++];
+                // Send to process i
+            } 
+            //Send all remaining size to process size-1
+        }
+</code></pre>
+
+<p>When <code>N</code> is a large number, this approach can split the workload quite evenly, though not optimal.</p>
+
+<h4 id="toc_17">1 node</h4>
+
+<p><strong>Sum of run time (seconds)</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>N\process</th>
+<th>1</th>
+<th>2</th>
+<th>4</th>
+<th>8</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>4000</td>
+<td>26.231928</td>
+<td>30.335556</td>
+<td>38.877738</td>
+<td>46.647150</td>
+</tr>
+<tr>
+<td>8000</td>
+<td>206.453949</td>
+<td>239.904405</td>
+<td>310.272931</td>
+<td>395.472496</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>Sum of calculation time (seconds)</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>N#process</th>
+<th>1</th>
+<th>2</th>
+<th>4</th>
+<th>8</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>4000</td>
+<td>26.174833</td>
+<td>25.923724</td>
+<td>27.975264</td>
+<td>32.488708</td>
+</tr>
+<tr>
+<td>8000</td>
+<td>206.213265</td>
+<td>206.268777</td>
+<td>225.666618</td>
+<td>269.997523</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>Sum of communication time (seconds)</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>N#process</th>
+<th>1</th>
+<th>2</th>
+<th>4</th>
+<th>8</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>4000</td>
+<td>0.057095</td>
+<td>4.411832</td>
+<td>10.902474</td>
+<td>14.158442</td>
+</tr>
+<tr>
+<td>8000</td>
+<td>0.240684</td>
+<td>33.635628</td>
+<td>84.606313</td>
+<td>125.474973</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>Wall time on master in all (seconds)</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>N#process</th>
+<th>1</th>
+<th>2</th>
+<th>4</th>
+<th>8</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>4000</td>
+<td>26.231928</td>
+<td>15.167774</td>
+<td>9.719429</td>
+<td>5.830890</td>
+</tr>
+<tr>
+<td>8000</td>
+<td>206.453949</td>
+<td>119.952199</td>
+<td>77.568227</td>
+<td>49.434058</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>Run time of different processes with node = 1 and p = 8</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>N\rank</th>
+<th>0</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>4000</td>
+<td>5.830890</td>
+<td>5.830898</td>
+<td>5.830889</td>
+<td>5.830897</td>
+<td>5.830890</td>
+<td>5.830898</td>
+<td>5.830890</td>
+<td>5.830897</td>
+</tr>
+<tr>
+<td>8000</td>
+<td>49.434058</td>
+<td>49.434067</td>
+<td>49.434057</td>
+<td>49.434066</td>
+<td>49.434058</td>
+<td>49.434067</td>
+<td>49.434057</td>
+<td>49.434066</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>Calculation time of different processes with node = 1 and p = 8</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>N\rank</th>
+<th>0</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>4000</td>
+<td>5.102436</td>
+<td>4.744247</td>
+<td>4.451221</td>
+<td>4.143491</td>
+<td>3.936015</td>
+<td>3.580964</td>
+<td>3.314493</td>
+<td>3.215842</td>
+</tr>
+<tr>
+<td>8000</td>
+<td>44.909368</td>
+<td>38.750397</td>
+<td>37.398182</td>
+<td>33.421127</td>
+<td>32.973368</td>
+<td>28.563665</td>
+<td>28.135317</td>
+<td>25.846099</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>Communication time of different processes with node = 1 and p = 8</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>N\rank</th>
+<th>0</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>4000</td>
+<td>0.728455</td>
+<td>1.086651</td>
+<td>1.379668</td>
+<td>1.687407</td>
+<td>1.894875</td>
+<td>2.249934</td>
+<td>2.516397</td>
+<td>2.615055</td>
+</tr>
+<tr>
+<td>8000</td>
+<td>4.524690</td>
+<td>10.683670</td>
+<td>12.035875</td>
+<td>16.012939</td>
+<td>16.460690</td>
+<td>20.870402</td>
+<td>21.298740</td>
+<td>23.587967</td>
+</tr>
+</tbody>
+</table>
+
+<h4 id="toc_18">2 node</h4>
+
+<p><strong>Sum of run time (seconds)</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>N\process</th>
+<th>8</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>4000</td>
+<td>32.220555</td>
+</tr>
+<tr>
+<td>8000</td>
+<td>303.818205</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>Sum of calculation time (seconds)</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>N\process</th>
+<th>8</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>4000</td>
+<td>26.120232</td>
+</tr>
+<tr>
+<td>8000</td>
+<td>226.688834</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>Sum of communication time (seconds)</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>N\process</th>
+<th>8</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>4000</td>
+<td>6.100323</td>
+</tr>
+<tr>
+<td>8000</td>
+<td>77.129371</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>Wall time on master (seconds)</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>N\process</th>
+<th>8</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>4000</td>
+<td>4.027569</td>
+</tr>
+<tr>
+<td>8000</td>
+<td>37.977282</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>Run time of different processes with node = 2 and p = 8</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>N\rank</th>
+<th>0</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>4000</td>
+<td>4.027569</td>
+<td>4.027573</td>
+<td>4.027566</td>
+<td>4.027573</td>
+<td>4.027566</td>
+<td>4.027572</td>
+<td>4.027564</td>
+<td>4.027572</td>
+</tr>
+<tr>
+<td>8000</td>
+<td>37.977282</td>
+<td>37.977284</td>
+<td>37.977279</td>
+<td>37.977284</td>
+<td>37.977269</td>
+<td>37.977270</td>
+<td>37.977266</td>
+<td>37.977271</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>Calculation time of different processes with node = 2 and p = 8</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>N\rank</th>
+<th>0</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>4000</td>
+<td>3.962262</td>
+<td>3.831903</td>
+<td>3.462439</td>
+<td>3.449887</td>
+<td>3.133676</td>
+<td>2.868331</td>
+<td>2.803538</td>
+<td>2.608196</td>
+</tr>
+<tr>
+<td>8000</td>
+<td>37.601675</td>
+<td>33.587441</td>
+<td>31.370342</td>
+<td>28.822635</td>
+<td>26.228431</td>
+<td>24.142901</td>
+<td>23.288236</td>
+<td>21.647173</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>Communication time of different processes with node = 2 and p = 8</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>N\rank</th>
+<th>0</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>4000</td>
+<td>0.065307</td>
+<td>0.195670</td>
+<td>0.565127</td>
+<td>0.577686</td>
+<td>0.893890</td>
+<td>1.159241</td>
+<td>1.224026</td>
+<td>1.419376</td>
+</tr>
+<tr>
+<td>8000</td>
+<td>0.375607</td>
+<td>4.389843</td>
+<td>6.606937</td>
+<td>9.154649</td>
+<td>11.748838</td>
+<td>13.834369</td>
+<td>14.689030</td>
+<td>16.330098</td>
+</tr>
+</tbody>
+</table>
+
+<h4 id="toc_19">4 node</h4>
+
+<p><strong>Sum of run time (seconds)</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>N\process</th>
+<th>8</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>4000</td>
+<td>28.987832</td>
+</tr>
+<tr>
+<td>8000</td>
+<td>269.094924</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>Sum of calculation time (seconds)</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>N\process</th>
+<th>8</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>4000</td>
+<td>21.912072</td>
+</tr>
+<tr>
+<td>8000</td>
+<td>204.597468</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>Sum of communication time (seconds)</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>N\process</th>
+<th>8</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>4000</td>
+<td>7.075759</td>
+</tr>
+<tr>
+<td>8000</td>
+<td>64.497457</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>Wall time on master in all (seconds)</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>N\process</th>
+<th>8</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>4000</td>
+<td>3.623479</td>
+</tr>
+<tr>
+<td>8000</td>
+<td>33.636869</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>Run time of different processes with node = 4 and p = 8</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>N\rank</th>
+<th>0</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>4000</td>
+<td>3.623479</td>
+<td>3.623481</td>
+<td>3.623479</td>
+<td>3.623478</td>
+<td>3.623480</td>
+<td>3.623479</td>
+<td>3.623479</td>
+<td>3.623476</td>
+</tr>
+<tr>
+<td>8000</td>
+<td>33.636869</td>
+<td>33.636868</td>
+<td>33.636865</td>
+<td>33.636864</td>
+<td>33.636866</td>
+<td>33.636866</td>
+<td>33.636863</td>
+<td>33.636863</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>Calculation time of different processes with node = 4 and p = 8</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>N\rank</th>
+<th>0</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>4000</td>
+<td>3.559544</td>
+<td>3.167283</td>
+<td>2.944582</td>
+<td>2.758816</td>
+<td>2.627346</td>
+<td>2.409321</td>
+<td>2.286883</td>
+<td>2.158297</td>
+</tr>
+<tr>
+<td>8000</td>
+<td>33.375091</td>
+<td>30.251535</td>
+<td>27.861630</td>
+<td>25.750242</td>
+<td>24.032025</td>
+<td>22.424529</td>
+<td>21.080940</td>
+<td>19.821476</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>Communication time of different processes with node = 4 and p = 8</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>N\rank</th>
+<th>0</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>4000</td>
+<td>0.063936</td>
+<td>0.456198</td>
+<td>0.678897</td>
+<td>0.864661</td>
+<td>0.996134</td>
+<td>1.214158</td>
+<td>1.336596</td>
+<td>1.465179</td>
+</tr>
+<tr>
+<td>8000</td>
+<td>0.261778</td>
+<td>3.385333</td>
+<td>5.775235</td>
+<td>7.886622</td>
+<td>9.604841</td>
+<td>11.212337</td>
+<td>12.555923</td>
+<td>13.815387</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>Discussion</strong><br/>
+From the table <strong>Calculation time of different processes with node = 4, and = 8</strong>, we can see that instead of having process 0 always waiting and process size-1 doing a lot of work. Now all processes work for at least twenty seconds. The solution is not the optimal solution since it still does not split the workload very evenly. It will balance the work load better when <code>N</code> is larger.</p>
+
+<h3 id="toc_20">task 5</h3>
+
+<p>Anther benefits of this strategy describe in previous section is that we achieve generalization in the mean time. Now workload split has nothing to do with fixed sized blocks. Each process can have various-sized block (at least have one). The last process will handle all the remaining rows and columns. So no matter what the <code>N</code> and <code>p</code> is (as long as they are positive number), my program can work correctly.</p>
+
+<p>I use following method to demonstrate the correctness of my program. Now, <code>N=7633</code> and <code>p=7</code>, and I use 4 nodes. I let my program output the whole C matrix to a file called <code>task5.log</code>. And I use serial program to output the C matrix to a file called <code>std.log</code>. Then I use command </p>
+
+<pre><code>diff task5.log std.log
+</code></pre>
+
+<p>The result of this command is nothing, which means these two files are exactly the same.</p>
+
+<p>Below is the output of my program.</p>
+
+<pre><code>/lustre/home/client/fas/cpsc424/cg736
+/lustre/home/client/fas/cpsc424/cg736/as/as3/task4
+compute-32-9
+compute-32-9
+compute-32-7
+compute-32-7
+compute-32-6
+compute-32-6
+compute-32-5
+compute-32-5
+rm -f task4 *.o
+mpicc -g -O3 -xHost -fno-alias -std=c99 -I/home/fas/cpsc424/ahs3/utils/timing -c task4.c
+mpicc -o task4 -g -O3 -xHost -fno-alias -std=c99 -I/home/fas/cpsc424/ahs3/utils/timing task4.o /home/fas/cpsc424/ahs3/utils/timing/timing.o
+walltime: | 33.296889 | 33.296894 | 33.296888 | 33.296892 | 33.296888 | 33.296892 | 33.296887
+calculation: | 33.063268 | 29.491639 | 26.883043 | 24.694355 | 22.873729 | 21.162234 | 19.746379
+communication: | 0.233621 | 3.805255 | 6.413845 | 8.602537 | 10.423159 | 12.134658 | 13.550508
+Sum of overral wall time is 233.078229.
+Sum of overral calcultion time is 177.914647.
+Sum of overral communication time is 55.163583.
+</code></pre>
+
+<br><br><br><br>
+
+</div></body>
+
+</html>

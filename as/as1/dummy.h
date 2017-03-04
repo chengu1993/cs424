@@ -1,1 +1,1 @@
-void dummy(double[] nums);
+void dummy(double nums[]);

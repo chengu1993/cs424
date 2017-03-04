@@ -1,0 +1,73 @@
+/lustre/home/client/fas/cpsc424/cg736
+/lustre/home/client/fas/cpsc424/cg736/as/as3/task3
+compute-32-13
+compute-32-13
+compute-32-13
+compute-32-13
+compute-32-13
+compute-32-13
+compute-32-13
+compute-32-13
+rm -f task3 *.o
+mpicc -g -O3 -xHost -fno-alias -std=c99 -I/home/fas/cpsc424/ahs3/utils/timing -c task3.c
+mpicc -o task3 -g -O3 -xHost -fno-alias -std=c99 -I/home/fas/cpsc424/ahs3/utils/timing task3.o /home/fas/cpsc424/ahs3/utils/timing/timing.o
+p=1
+N=4000
+walltime: | 19.511368
+calculation: | 19.448634
+communication: | 0.062734
+Sum of overral wall time is 19.511368.
+Sum of overral calcultion time is 19.448634.
+Sum of overral communication time is 0.062734.
+N=8000
+walltime: | 154.651165
+calculation: | 154.412760
+communication: | 0.238405
+Sum of overral wall time is 154.651165.
+Sum of overral calcultion time is 154.412760.
+Sum of overral communication time is 0.238405.
+p=2
+N=4000
+walltime: | 13.451597 | 13.451597
+calculation: | 6.022889 | 13.161533
+communication: | 7.428708 | 0.290064
+Sum of overral wall time is 26.903194.
+Sum of overral calcultion time is 19.184422.
+Sum of overral communication time is 7.718772.
+N=8000
+walltime: | 107.003592 | 107.003592
+calculation: | 49.568436 | 105.473550
+communication: | 57.435156 | 1.530042
+Sum of overral wall time is 214.007184.
+Sum of overral calcultion time is 155.041986.
+Sum of overral communication time is 58.965198.
+p=4
+N=4000
+walltime: | 9.892548 | 9.892551 | 9.892546 | 9.892551
+calculation: | 1.679090 | 5.101695 | 6.252829 | 7.721749
+communication: | 8.213458 | 4.790856 | 3.639717 | 2.170802
+Sum of overral wall time is 39.570196.
+Sum of overral calcultion time is 20.755363.
+Sum of overral communication time is 18.814833.
+N=8000
+walltime: | 79.721335 | 79.721337 | 79.721333 | 79.721337
+calculation: | 16.977445 | 43.530112 | 52.998442 | 64.270434
+communication: | 62.743890 | 36.191225 | 26.722891 | 15.450903
+Sum of overral wall time is 318.885342.
+Sum of overral calcultion time is 177.776433.
+Sum of overral communication time is 141.108909.
+p=8
+N=4000
+walltime: | 5.960212 | 5.960190 | 5.960209 | 5.960193 | 5.960213 | 5.960190 | 5.960207 | 5.960192
+calculation: | 0.403713 | 1.884659 | 2.299092 | 3.610072 | 3.427107 | 4.512747 | 3.954035 | 4.842727
+communication: | 5.556499 | 4.075531 | 3.661117 | 2.350121 | 2.533106 | 1.447443 | 2.006172 | 1.117465
+Sum of overral wall time is 47.681605.
+Sum of overral calcultion time is 24.934153.
+Sum of overral communication time is 22.747452.
+N=8000
+walltime: | 50.348802 | 50.348804 | 50.348797 | 50.348805 | 50.348801 | 50.348804 | 50.348797 | 50.348805
+calculation: | 6.297138 | 17.969836 | 21.775928 | 32.747183 | 31.339777 | 38.457060 | 35.317988 | 42.886676
+communication: | 44.051664 | 32.378968 | 28.572869 | 17.601622 | 19.009024 | 11.891744 | 15.030809 | 7.462129
+Sum of overral wall time is 402.790415.
+Sum of overral calcultion time is 226.791586.
+Sum of overral communication time is 175.998830.

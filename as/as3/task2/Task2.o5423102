@@ -1,0 +1,26 @@
+/lustre/home/client/fas/cpsc424/cg736
+/lustre/home/client/fas/cpsc424/cg736/as/as3/task2
+compute-32-12
+compute-32-12
+compute-32-11
+compute-32-11
+compute-32-10
+compute-32-10
+compute-32-9
+compute-32-9
+rm -f task2 *.o
+mpicc -g -O3 -xHost -fno-alias -std=c99 -I/home/fas/cpsc424/ahs3/utils/timing -c task2.c
+mpicc -o task2 -g -O3 -xHost -fno-alias -std=c99 -I/home/fas/cpsc424/ahs3/utils/timing task2.o /home/fas/cpsc424/ahs3/utils/timing/timing.o
+p=8
+walltime: | 4.834240 | 4.834240 | 4.834240 | 4.834238 | 4.834243 | 4.834242 | 4.834242 | 4.834242
+calculation: | 0.274826 | 0.717464 | 1.112987 | 1.573690 | 2.179168 | 2.638708 | 2.886416 | 2.948114
+communication: | 4.559414 | 4.116776 | 3.721253 | 3.260548 | 2.655075 | 2.195534 | 1.947826 | 1.886128
+Sum of overral wall time is 38.673928.
+Sum of overral calcultion time is 14.331373.
+Sum of overral communication time is 24.342554.
+walltime: | 40.909679 | 40.909693 | 40.909686 | 40.909700 | 40.909677 | 40.909691 | 40.909687 | 40.909700
+calculation: | 2.390041 | 9.159568 | 15.245518 | 19.592423 | 23.271797 | 25.822184 | 27.655274 | 28.372152
+communication: | 38.519638 | 31.750125 | 25.664168 | 21.317277 | 17.637880 | 15.087507 | 13.254413 | 12.537548
+Sum of overral wall time is 327.277513.
+Sum of overral calcultion time is 151.508956.
+Sum of overral communication time is 175.768557.

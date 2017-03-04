@@ -1,0 +1,1 @@
+/Library/Developer/CommandLineTools/usr/bin/cc  -g -Wl,-search_paths_first -Wl,-headerpad_max_install_names  CMakeFiles/as1.dir/dummy.c.o CMakeFiles/as1.dir/ex1.c.o CMakeFiles/as1.dir/ex2.c.o CMakeFiles/as1.dir/timing.c.o  -o as1 
