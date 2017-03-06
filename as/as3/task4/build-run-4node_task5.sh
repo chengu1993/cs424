@@ -7,10 +7,10 @@
 #PBS -q cpsc424
 
 module load Langs/Intel/15 MPI/OpenMPI/1.8.6-intel15
-pwd
+#pwd
 cd $PBS_O_WORKDIR
-pwd
-cat $PBS_NODEFILE
+#pwd
+#cat $PBS_NODEFILE
 make clean
 make
 mpiexec --map-by socket -n 7 task4 7633 

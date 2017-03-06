@@ -1233,10 +1233,103 @@ qsub build-run-4node.sh
 </table>
 
 <p><strong>Performance Discussion</strong><br/>
-We can see that with number of nodes and number of processors increasing, the performance is getting better. If fix the size of task to be 8000 and number of nodes to be 1, from the tables above, we can see that it takes 156.696647 seconds for a single process to do the multiplication, which is almost the same the serial program. However, it only takes 108.443788, 79.687322 and 53.824303 seconds for program with 2, 4, and 8 processes respectively. The wall time needed decreases when the number of processes increase.</p>
+We can see that with number of nodes and number of processors increasing, the performance is getting better. If fix the size of task to be 8000 and number of nodes to be 1, from the tables above, we can see that it takes 156.696647 seconds for a single process to do the multiplication, which is almost the same the serial program. However, it only takes 108.443788, 79.687322 and 53.824303 seconds for program with 2, 4, and 8 processes respectively. The wall time needed decreases when the number of processes increases. The following speedup table better illustrates the performance gain. (This table uses data with <code>#nodes=1</code>)</p>
+
+<table>
+<thead>
+<tr>
+<th>p</th>
+<th>speedup</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>1</td>
+<td>1.00</td>
+</tr>
+<tr>
+<td>2</td>
+<td>1.45</td>
+</tr>
+<tr>
+<td>4</td>
+<td>1.97</td>
+</tr>
+<tr>
+<td>8</td>
+<td>2.92</td>
+</tr>
+</tbody>
+</table>
 
 <p><strong>Scalability discussion</strong><br/>
-Since in task2 we use blocking method, the communication overhead is huge especially when there are multiple processes. The tables shows that the overall time spent on communication is more than the time spent on calculation when <code>p=8</code> and <code>#node=2</code>. It takes about 40 seconds with 2 nodes and 8 processors. When I increase the number of nodes to be 4 and fix the number of processors to be 8, it still need approximately 40 seconds. This demonstrates that now communication overhead becomes the bottleneck the performance gain. Overall, using block method will not scale well.</p>
+Since in task2 we use blocking method, the communication overhead is huge especially when there are multiple processes. The tables shows that the overall time spent on communication is more than the time spent on calculation when <code>p=8</code> and <code>#node=2</code>. It takes about 40 seconds with 2 nodes and 8 processors. When I increase the number of nodes to be 4 and fix the number of processors to be 8, it still need approximately 40 seconds. This demonstrates that now communication overhead becomes the bottleneck the performance gain. I calculate efficiency with <code>#node = 1 N=8000</code>. The table below shows the result.</p>
+
+<table>
+<thead>
+<tr>
+<th>p</th>
+<th>efficiency</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>1</td>
+<td>1.00</td>
+</tr>
+<tr>
+<td>2</td>
+<td>0.73</td>
+</tr>
+<tr>
+<td>4</td>
+<td>0.49</td>
+</tr>
+<tr>
+<td>8</td>
+<td>0.365</td>
+</tr>
+</tbody>
+</table>
+
+<p>With number of processes increases, the efficiency drops significantly, when p approaches infinity, efficiency will approach 0. Task2 clearly doesn&#39;t have strong scalability. </p>
+
+<table>
+<thead>
+<tr>
+<th>p</th>
+<th>N</th>
+<th>efficiency</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>1</td>
+<td>1000</td>
+<td>0.84</td>
+</tr>
+<tr>
+<td>2</td>
+<td>2000</td>
+<td>0.74</td>
+</tr>
+<tr>
+<td>4</td>
+<td>4000</td>
+<td>0.48</td>
+</tr>
+<tr>
+<td>8</td>
+<td>8000</td>
+<td>0.365</td>
+</tr>
+</tbody>
+</table>
+
+<p>With <code>p</code> and <code>N</code> increase at same speed, the efficiency still declines. Task2 may achieve weak scalability with a high N to p increase ratio. Overall, using blocking method does not scale well.</p>
 
 <p><strong>Load Balance discussion</strong><br/>
 The load balance is terrible because we give each process unbalanced amount of work. Let&#39;s see an example. If <code>N=6</code> and there are 3 processes. Each process will get 2-row block. Process 0 will get 3 elements while process 2 will get 11 elements.</p>
@@ -1249,7 +1342,11 @@ x x x x x
 x x x x x x
 </code></pre>
 
-<p>Each process will use these row block to calculate partial result throughout the whole process and it is not fair. And it&#39;s the same for column block. In each iteration, each process will get different number of elements. The process with light workload will just sit there and waiting while others with heavy workload is doing most calculations. This is proven by the result, in the table <strong>Calculation time of different processes with node = 4 and = 8</strong>, when <code>N=8000</code>, process 0 work only for 2.39 seconds while process 7 works for 28.37 seconds.</p>
+<p>Each process will use these row block to calculate partial result throughout the whole process and it is not fair. And it&#39;s the same for column block. In each iteration, each process will get different number of elements. The process with light workload will just sit there and waiting while others with heavy workload is doing most calculations. This is proven by the result, in the table <strong>Calculation time of different processes with node = 4 and = 8</strong>, when <code>N=8000</code>, process 0 work only for 2.39 seconds while process 7 works for 28.37 seconds. The table shows the how many elements each process is assigned. We can see that the load is extremely unbalanced.</p>
+
+<p>0  | 1 | 2| 3| 4| 5 | 6 | 7<br/>
+---|---|--|--|--|---|---|---<br/>
+500500 |1500500 |2500500| 3500500 |4500500 |5500500 |6500500 |7500500</p>
 
 <p><strong>Suggestion</strong><br/>
 1. We can use non-blocking method rather than blocking method. Thus we can overlay communication and computation. And the expectation by doing so is that we can reduce wall time required to perform the multiplication.<br/>
@@ -1968,11 +2065,58 @@ Comparing the table with <code>P = 8</code> we can see that when number of nodes
 <p><strong>Difference between task 2 in performance and explanation</strong><br/>
 When <code>N=8000, p=8</code>, the wall time needed by task 2 is 53, 40 and 40 seconds when there are 1, 2 and 4 nodes respectively. As a comparison, the wall time needed by task 3 is 50, 38 and 33 seconds. In task2, more time is spent on communication while in task 3, more time is spent on calculation. The performance gain may not seem substantial at first look, but <code>8000</code> is still a relative small scale, if <code>N</code> is much larger, then the improvement in performance will be more significant.</p>
 
+<p>The table below gives a sense how the speedup of task 3 looks like compared with that of task 2. (with <code>p=8, #node = 4</code>)</p>
+
+<table>
+<thead>
+<tr>
+<th>N</th>
+<th>speedup in task2</th>
+<th>speedup in task3</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>4000</td>
+<td>4.07</td>
+<td>5.16</td>
+</tr>
+<tr>
+<td>8000</td>
+<td>3.85</td>
+<td>4.74</td>
+</tr>
+</tbody>
+</table>
+
 <p><strong>Difference between task 2 in scalability and explanation</strong><br/>
-The scalability of task 3 is slightly better than task 2 because by using non-blocking message passing, process with heavy workload does not wail util it finishes its calculation to send and receive B block. The communication overhead is now offset by the overlay of communication and computation. In task2, the total communication cost is 175 seconds when <code>p=8, node=4, N=8000</code>, but in task 3, it is merely 113 seconds. With smaller communication overhead, program works faster when N is huge and scales better when there are multiple processors and nodes.</p>
+The scalability of task 3 is slightly better than task 2 because by using non-blocking message passing, process with heavy workload does not wail util it finishes its calculation to send and receive B block. The communication overhead is now offset by the overlay of communication and computation. In task 2, the total communication cost is 175 seconds when <code>p=8, node=4, N=8000</code>, but in task 3, it is merely 113 seconds. With smaller communication overhead, program works faster when N is huge and scales better when there are multiple processors and nodes. The table below gives a comparison between task 2 and task 3 in terms of scalability. (with <code>#node = 4, N = 8000</code>). We can see that the efficiency improves by 10 percent in such setting. The overall scalability is improved, though it is still weak scalability.</p>
+
+<table>
+<thead>
+<tr>
+<th>p</th>
+<th>efficiency in task 2</th>
+<th>efficiency in task 3</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>8</td>
+<td>0.49</td>
+<td>0.59</td>
+</tr>
+</tbody>
+</table>
 
 <p><strong>Difference between task 2 in load balance and explanation</strong><br/>
-The table <strong>Calculation time of different processes with node = 4 and p 8</strong> illustrates that the uneven workload problem still exists in task 3. Process 0 only works for 2.39 seconds while process 7 works for 28.37 seconds. This is because the master adopts the same distribution strategy. Using non-blocking message passing method cannot address that problem. We need a better strategy in terms of workload distribution.</p>
+The table <strong>Calculation time of different processes with node = 4 and p 8</strong> illustrates that the uneven workload problem still exists in task 3. Process 0 only works for 2.39 seconds while process 7 works for 28.37 seconds. This is because the master adopts the same distribution strategy. Using non-blocking message passing method cannot address that problem. We need a better strategy in terms of workload distribution. The element distribution table is the same task 2.</p>
+
+<p>0  | 1 | 2| 3| 4| 5 | 6 | 7<br/>
+---|---|--|--|--|---|---|---<br/>
+500500 |1500500 |2500500| 3500500 |4500500 |5500500 |6500500 |7500500</p>
 
 <h3 id="toc_16">task 4</h3>
 
@@ -2685,7 +2829,12 @@ The table <strong>Calculation time of different processes with node = 4 and p 8<
 </table>
 
 <p><strong>Discussion</strong><br/>
-From the table <strong>Calculation time of different processes with node = 4, and = 8</strong>, we can see that instead of having process 0 always waiting and process size-1 doing a lot of work. Now all processes work for at least twenty seconds. The solution is not the optimal solution since it still does not split the workload very evenly. It will balance the work load better when <code>N</code> is larger.</p>
+From the table <strong>Calculation time of different processes with node = 4, and = 8</strong>, we can see that instead of having process 0 always waiting and process size-1 doing a lot of work. Now all processes work for at least twenty seconds. The solution is not the optimal solution since it still does not split the workload very evenly. It will balance the work load better when <code>N</code> is larger. We compare the element distribution between task4 and task3 and the table below shows the result. It is clear that after load balancing, each process gets about same amount of data to process.</p>
+
+<p>task\rank | 0  | 1 | 2| 3| 4| 5 | 6 | 7<br/>
+----------|---|---|--|--|--|---|---|---<br/>
+task 3 | 500500 |1500500 |2500500| 3500500 |4500500 |5500500 |6500500 |7500500<br/>
+task 4 |4000206 |3997794 |3999651 |4000345 |3995330 |3994875 |3998220 |4017579</p>
 
 <h3 id="toc_20">task 5</h3>
 
@@ -2696,30 +2845,183 @@ From the table <strong>Calculation time of different processes with node = 4, an
 <pre><code>diff task5.log std.log
 </code></pre>
 
-<p>The result of this command is nothing, which means these two files are exactly the same.</p>
+<p>The result of this command is:</p>
 
-<p>Below is the output of my program.</p>
-
-<pre><code>/lustre/home/client/fas/cpsc424/cg736
-/lustre/home/client/fas/cpsc424/cg736/as/as3/task4
-compute-32-9
-compute-32-9
-compute-32-7
-compute-32-7
-compute-32-6
-compute-32-6
-compute-32-5
-compute-32-5
-rm -f task4 *.o
-mpicc -g -O3 -xHost -fno-alias -std=c99 -I/home/fas/cpsc424/ahs3/utils/timing -c task4.c
-mpicc -o task4 -g -O3 -xHost -fno-alias -std=c99 -I/home/fas/cpsc424/ahs3/utils/timing task4.o /home/fas/cpsc424/ahs3/utils/timing/timing.o
-walltime: | 33.296889 | 33.296894 | 33.296888 | 33.296892 | 33.296888 | 33.296892 | 33.296887
-calculation: | 33.063268 | 29.491639 | 26.883043 | 24.694355 | 22.873729 | 21.162234 | 19.746379
-communication: | 0.233621 | 3.805255 | 6.413845 | 8.602537 | 10.423159 | 12.134658 | 13.550508
-Sum of overral wall time is 233.078229.
-Sum of overral calcultion time is 177.914647.
-Sum of overral communication time is 55.163583.
+<pre><code>18936559c18936559
+&lt; 618.987898
+---
+&gt; 618.987899
+19338489c19338489
+&lt; 642.263684
+---
+&gt; 642.263685
+22231256c22231256
+&lt; 738.670571
+---
+&gt; 738.670572
+23201578c23201578
+&lt; 770.111782
+---
+&gt; 770.111783
+24257402c24257402
+&lt; 769.282856
+---
+&gt; 769.282857
+27583428c27583428
+&lt; 861.596650
+---
+&gt; 861.596651
+27939072c27939072
+&lt; 574.501568
+---
+&gt; 574.501569
+28050267c28050267
+&lt; 926.742288
+---
+&gt; 926.742287
+28215012c28215012
+&lt; 871.170011
+---
+&gt; 871.170010
+29378600c29378600
+&lt; 995.896688
+---
+&gt; 995.896689
+29566760c29566760
+&lt; 952.189416
+---
+&gt; 952.189415
+35001034c35001034
+&lt; 941.607205
+---
+&gt; 941.607204
+35848857c35848857
+&lt; 1072.661050
+---
+&gt; 1072.661051
+36625031c36625031
+&lt; 467.012975
+---
+&gt; 467.012976
+36880232c36880232
+&lt; 1188.198905
+---
+&gt; 1188.198904
+37817606c37817606
+&lt; 910.542771
+---
+&gt; 910.542770
+39391356c39391356
+&lt; 1278.969563
+---
+&gt; 1278.969562
+40026953c40026953
+&lt; 1300.343923
+---
+&gt; 1300.343922
+40283269c40283269
+&lt; 989.473369
+---
+&gt; 989.473368
+40674559c40674559
+&lt; 1305.234870
+---
+&gt; 1305.234869
+42240008c42240008
+&lt; 1365.009367
+---
+&gt; 1365.009366
+42351734c42351734
+&lt; 949.284154
+---
+&gt; 949.284153
+42688079c42688079
+&lt; 1091.388255
+---
+&gt; 1091.388254
+45353458c45353458
+&lt; 1461.043673
+---
+&gt; 1461.043672
+45430272c45430272
+&lt; 1502.795320
+---
+&gt; 1502.795321
+46426959c46426959
+&lt; 745.462562
+---
+&gt; 745.462561
+47353860c47353860
+&lt; 1534.396211
+---
+&gt; 1534.396210
+48140134c48140134
+&lt; 1566.838903
+---
+&gt; 1566.838902
+49335433c49335433
+&lt; 832.605284
+---
+&gt; 832.605283
+49462732c49462732
+&lt; 224.174051
+---
+&gt; 224.174052
+50003464c50003464
+&lt; 1652.259732
+---
+&gt; 1652.259733
+50694140c50694140
+&lt; 836.574256
+---
+&gt; 836.574255
+53079614c53079614
+&lt; 1763.367547
+---
+&gt; 1763.367546
+53504109c53504109
+&lt; 1111.192426
+---
+&gt; 1111.192427
+54239663c54239663
+&lt; 1768.557799
+---
+&gt; 1768.557800
+55000702c55000702
+&lt; 1225.380883
+---
+&gt; 1225.380884
+55116121c55116121
+&lt; 1456.039546
+---
+&gt; 1456.039547
+55161814c55161814
+&lt; 1437.111582
+---
+&gt; 1437.111581
+55191046c55191046
+&lt; 1118.861466
+---
+&gt; 1118.861465
+55797015c55797015
+&lt; 1833.448583
+---
+&gt; 1833.448584
+56809468c56809468
+&lt; 1163.546110
+---
+&gt; 1163.546109
+56885274c56885274
+&lt; 1062.431057
+---
+&gt; 1062.431058
+57323612c57323612
+&lt; 1875.337650
+---
+&gt; 1875.337649
 </code></pre>
+
+<p>Surprisingly, there are difference the output. But after I examine all these difference, I find that it is due to floating point decision problem. All the difference is smaller than <code>10^-6</code>. Hence it can be neglected. I guess it is due to compiler optimization that change the adding sequence of double type.</p>
 
 <br><br><br><br>
 

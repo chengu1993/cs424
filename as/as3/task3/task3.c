@@ -13,26 +13,26 @@ int get_block_size(int block_idx, int size){
 	return  idx2 * (idx2 + 1) / 2 - idx1 * (idx1 + 1) / 2; 
 }
 
-main (int argc, char** argv){
+int main (int argc, char** argv){
 
 	int rank, size, tag = 99, root = 0;
+	int *scounts, *displs;
 	MPI_Request request1, request2;
 	MPI_Status status;
     int N = atoi(argv[1]);
-	double* C, * wall_time, * cal_time;
+	double *A, *B, *C, *wall_time, *cal_time;
 	int sizeAB = N*(N+1)/2; //Only enough space for the nonzero portions of the matrices
     int sizeC = N*N; // All of C will be nonzero, in general!
 	double wctime, wctime0, wctime1, caltime, caltime0, caltime1, cputime;	
 	MPI_Init(&argc, &argv);
 	MPI_Comm_size(MPI_COMM_WORLD, &size);
 	MPI_Comm_rank(MPI_COMM_WORLD, &rank);
-
 	MPI_Barrier(MPI_COMM_WORLD);
 	timing(&wctime0, &cputime);
 
 	if(rank == root) { // master
-		double* A = (double *) calloc(sizeAB, sizeof(double));
-    	double* B = (double *) calloc(sizeAB, sizeof(double));	
+		A = (double *) calloc(sizeAB, sizeof(double));
+    	B = (double *) calloc(sizeAB, sizeof(double));	
 		C = (double *) calloc(sizeC, sizeof(double));
 		wall_time = (double *) calloc(size, sizeof(double));
         cal_time = (double *) calloc(size, sizeof(double));
@@ -40,27 +40,24 @@ main (int argc, char** argv){
 		// This assumes A is stored by rows, and B is stored by columns. Other storage schemes are permitted
      	for (int i=0; i<sizeAB; i++) A[i] = ((double) rand()/(double)RAND_MAX);
      	for (int i=0; i<sizeAB; i++) B[i] = ((double) rand()/(double)RAND_MAX);
-			
-		//distribute A and B
-		int offset = 0;
-		for(int i=0; i<size; i++) {
-			MPI_Send(A + offset, get_block_size(i, N/size), MPI_DOUBLE, i, tag, MPI_COMM_WORLD);
-			MPI_Send(B + offset, get_block_size(i, N/size), MPI_DOUBLE, i, tag, MPI_COMM_WORLD);
-			offset += get_block_size(i, N/size);
-		}
-		free(A);
-		free(B);
 	} 
 
+	// calculate send counts and displancement to scatter A and B
+	scounts = (int *) calloc(size, sizeof(int));
+	displs = (int *) calloc(size, sizeof(int));
+	scounts[0] = get_block_size(0, N/size);
+	displs[0] = 0;
+	for(int i=1; i<size; i++) {
+		scounts[i] = get_block_size(i, N/size);
+		displs[i] = displs[i-1] + scounts[i-1];
+	}
 	//Initialization to get row block and column block	
 	int col = rank, size_B = get_block_size(rank, N/size);	
 	double* buffer_A = (double *) calloc(size_B, sizeof(double));
 	double* buffer_B = (double *) calloc(size_B, sizeof(double));
 	double* buffer_C = (double *) calloc(sizeC/size, sizeof(double));
-	MPI_Recv(buffer_A, size_B, MPI_DOUBLE, root, tag, MPI_COMM_WORLD, &status);
-	MPI_Recv(buffer_B, size_B, MPI_DOUBLE, root, tag, MPI_COMM_WORLD, &status);
-	
-
+	MPI_Scatterv(A, scounts, displs, MPI_DOUBLE, buffer_A, size_B, MPI_DOUBLE, root, MPI_COMM_WORLD);	
+	MPI_Scatterv(B, scounts, displs, MPI_DOUBLE, buffer_B, size_B, MPI_DOUBLE, root, MPI_COMM_WORLD);	
 	MPI_Barrier(MPI_COMM_WORLD);
 	timing(&wctime0, &cputime);
 	//start computing C
@@ -127,8 +124,11 @@ main (int argc, char** argv){
         //printf("\nSum of overral wall time is %f.\n", overral_time);
         //printf("Sum of overral calcultion time is %f.\n", overral_cal);
         //printf("Sum of overral communication time is %f.\n", overral_com);
-        for(int i=0; i<sizeC; i++) printf("%f ", C[i]);
+        //for(int i=0; i<sizeC; i++) printf("%f ", C[i]);
+	free(A);
+	free(B);
         free(C);
     }
 	MPI_Finalize();
+	return 0;
 }

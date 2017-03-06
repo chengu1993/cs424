@@ -16,5 +16,6 @@ make
 echo "p=8"
 for N in 4000 8000;do
 	echo "N=$N"
-	mpiexec --map-by socket -n 8 task4 $N 
+	mpiexec --map-by socket -n 6 task4 $N 
+
 done

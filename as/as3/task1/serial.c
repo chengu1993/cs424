@@ -24,7 +24,7 @@ int main(int argc, char **argv) {
   double wctime;
 
   //printf("Matrix multiplication times:\n   N      TIME (secs)\n -----   -------------\n");
-  for (run=0; run<1; run++) {
+  for (run=0; run<4; run++) {
     N = sizes[run];
 
     sizeAB = N*(N+1)/2; //Only enough space for the nonzero portions of the matrices
@@ -43,7 +43,7 @@ int main(int argc, char **argv) {
     wctime = matmul(N, A, B, C);
 
     //printf ("  %5d    %9.4f\n", N, wctime);
-	for(i=0; i<sizeC; i++) printf("%f ", C[i]);
+//	for(i=0; i<sizeC; i++) printf("%f\n", C[i]);
     free(A);
     free(B);
     free(C);
