@@ -1,0 +1,4 @@
+rm -f serial *.o
+icc -g -O3 -xHost -fno-alias -std=c99 -I/home/fas/cpsc424/ahs3/utils/timing -c serial.c
+icc -o serial -g -O3 -xHost -fno-alias -std=c99 -I/home/fas/cpsc424/ahs3/utils/timing serial.o /home/fas/cpsc424/ahs3/utils/timing/timing.o
+rm -f serial *.o

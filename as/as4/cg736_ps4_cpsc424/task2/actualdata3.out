@@ -1,0 +1,65 @@
+
+
+Initial Conditions (time = 0.0)
+
+	#boides each octant has: (432, 416, 368, 395, 439, 410, 355, 385)
+	Center of Mass:   (2.738438e-09, -8.980691e-09, -3.708599e-09)
+	Average Velocity: (3.605623e-10, 1.931760e-08, 3.645550e-09)
+
+
+Conditions after timestep 128 (time = 4)
+
+	#boides each octant has: (422, 436, 397, 408, 398, 397, 364, 378)
+	Center of Mass:     (4.180687e-09, 6.828971e-08, 1.087360e-08)
+	Average Velocities: (3.605622e-10, 1.931760e-08, 3.645550e-09)
+
+
+Conditions after timestep 256 (time = 8)
+
+	#boides each octant has: (180, 605, 620, 215, 194, 580, 617, 189)
+	Center of Mass:     (5.622936e-09, 1.455601e-07, 2.545580e-08)
+	Average Velocities: (3.605623e-10, 1.931760e-08, 3.645550e-09)
+
+
+Conditions after timestep 384 (time = 12)
+
+	#boides each octant has: (149, 676, 635, 145, 165, 595, 691, 144)
+	Center of Mass:     (7.065185e-09, 2.228305e-07, 4.003800e-08)
+	Average Velocities: (3.605622e-10, 1.931760e-08, 3.645550e-09)
+
+
+Conditions after timestep 512 (time = 16)
+
+	#boides each octant has: (113, 696, 684, 107, 125, 637, 722, 116)
+	Center of Mass:     (8.507434e-09, 3.001009e-07, 5.462021e-08)
+	Average Velocities: (3.605623e-10, 1.931760e-08, 3.645550e-09)
+
+
+Conditions after timestep 640 (time = 20)
+
+	#boides each octant has: (90, 742, 704, 91, 101, 617, 757, 98)
+	Center of Mass:     (9.949683e-09, 3.773713e-07, 6.920241e-08)
+	Average Velocities: (3.605622e-10, 1.931760e-08, 3.645550e-09)
+
+
+Conditions after timestep 768 (time = 24)
+
+	#boides each octant has: (82, 757, 694, 92, 100, 602, 785, 88)
+	Center of Mass:     (1.139193e-08, 4.546417e-07, 8.378461e-08)
+	Average Velocities: (3.605622e-10, 1.931760e-08, 3.645550e-09)
+
+
+Conditions after timestep 896 (time = 28)
+
+	#boides each octant has: (117, 713, 685, 120, 127, 592, 746, 100)
+	Center of Mass:     (1.283418e-08, 5.319121e-07, 9.836681e-08)
+	Average Velocities: (3.605622e-10, 1.931760e-08, 3.645550e-09)
+
+
+Conditions after timestep 1024 (time = 32)
+
+	#boides each octant has: (184, 622, 650, 181, 182, 537, 698, 146)
+	Center of Mass:     (1.427643e-08, 6.091825e-07, 1.129490e-07)
+	Average Velocities: (3.605622e-10, 1.931760e-08, 3.645550e-09)
+
+Time for 1024 timesteps with 3200 bodies: 21.939878 seconds

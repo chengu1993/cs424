@@ -1,0 +1,4 @@
+rm -f parallel *.o
+mpicc -g -O3 -xHost -fno-alias -std=c99 -I/home/fas/cpsc424/ahs3/utils/timing -c parallel.c
+mpicc -o parallel -g -O3 -xHost -fno-alias -std=c99 -I/home/fas/cpsc424/ahs3/utils/timing parallel.o /home/fas/cpsc424/ahs3/utils/timing/timing.o
+rm -f parallel *.o
