@@ -1,0 +1,7 @@
+Device count = 3
+Using device 0
+Matrix Dimension = 8192 8192 8192
+Block_Dim_X = 4, Block_Dim_Y = 4, Grid_Dim_X = 2048, Grid_Dim_Y = 2048
+Time to calculate results on GPU: 79547.585938 ms.
+Time to calculate results on CPU: 0.001792 ms.
+Scaled error between GPU and CPU: 9.155951e-05
