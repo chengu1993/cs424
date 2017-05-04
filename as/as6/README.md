@@ -151,6 +151,12 @@ m=p=n8192 | 256 * 256 | 32 * 32 | 18498.746094 | 28609.435547 |
 We can see from the table above that GPU is efficient for single precision calculation. The time used in calculating double precision matrix multiplication increases by about 50%.
 
 #### Part c
+The global memory of M2090 is **6GB**. Each float is **4B** and we have to store **3** matrices in the memory (A, B and C). Below is the formula to calculate the largest matrix dimension 
+```
+max = sqrt(6*2^30 / 4 / 3) = 23179
+``` 
+However, in reality, this max dimension cannot be achieved since some of memory is occupied for special purposes (e.g. thread local memory).
+
 I wrote a script to increase the dimension by 1000 at a time and see if the timing is still larger than some number. Once the timing drops to near zero, I break the loop and report the largest size with reasonable timing. The largest size I found is **n = p = m = 20684**.  The corresponding GPU TIME is **341605.875000 ms**.
 ### Task 2
 #### Part a
@@ -173,6 +179,8 @@ m=p=n8192 | 256 * 256 | 32 * 32 | 7456.747559 | 12797.792969 |
 With tiled calculation, both single and double precision calculation accelerate. However, single precision calculation is still much faster than double precision calculation (about 60%).
 
 #### Part c
+The largest matrix dimension is constrained by the global memory size. The theoretical max value is the same as that in task1 (about 23179).
+ 
 I reused the script I used in task 1. Again, the largest size I found is **n = p = m = 20684**.  The corresponding GPU TIME is **164544.390625 ms**. The largest size is the same as that in task 1. But the corresponding GPU TIME decreases significantly (from **341605.875000** ms to **164544.390625 ms**)
 
 #### Note
@@ -221,8 +229,8 @@ We can see when **NTB = 256**, it achieves the besting timing (7068.958008 ms).
 The table below shows the comparison timing between tiled multiplication and multi-tiled multiplication. Multi-tiled calculation is slightly fasster than tile calculation when **NTB** is large. Overall, the timing of these 2 approaches is quite close. As described the assigment6.pdf, though the number of tiles loaded from global memory into shared memory would be reduced by ~25%. Unfortunately, multi-tiled approach does increase the usage of registers and shared memory, so the benefit of using multi-tiled calculation may not always be significant. 
 
 
-     | Grid Dimension | Block Dimension  | Tiled | Multi-Tiled (NTB=6) 
-------- | ------- | ------- | ------- | --------- 
+     | Grid Dimension | Block Dimension  | Tile Size | Tiled GPU TIME (ms) | Multi-Tiled (NTB=256) GPU TIME (ms) 
+------- | ------- | ------- | ------- | --------- | -----------
 n=p=m=8192 | 256 * 256 | 32 * 32 | 32 | 7456.747559 | 7068.958008
 
 #### Note
