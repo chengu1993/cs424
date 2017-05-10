@@ -1,15 +1,15 @@
-CC = gcc
+CC = icc
 
-CFLAGS = -g -O3 -std=c99
+CFLAGS = -g -O3 -xHost -fno-alias -std=c99
 
-all: serial compare
+all: poisson
 
-serial: serial.o timing.o
+poisson: poisson.o timing.o
 	$(CC) -o $@ $(CFLAGS) $^
 
 .c.o:
 	$(CC) $(CFLAGS) -c $<
 
 clean:
-	rm -f serial *.o 
+	rm -f poisson *.o 
 

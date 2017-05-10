@@ -118,7 +118,7 @@ To run the program, you can enter each sub directory and submit the job to runni
 qsub xxx.sh 
 ```
 Note: here xxx should be replaced by specific script name.
-For `task3`, I do not provide a script. Since **NTB** is defined as macro, you have change the value of **NTB** and rebuild the program and rerun.
+For `task3`, I do not provide a script. Since **NTB** is defined as macro, you have to change the value of **NTB** and rebuild the program and rerun.
 
 ## Output and evaluation
  Throughout the assignment, I used **M2090** for all the final timings.
@@ -184,7 +184,7 @@ The largest matrix dimension is constrained by the global memory size. The theor
 I reused the script I used in task 1. Again, the largest size I found is **n = p = m = 20684**.  The corresponding GPU TIME is **164544.390625 ms**. The largest size is the same as that in task 1. But the corresponding GPU TIME decreases significantly (from **341605.875000** ms to **164544.390625 ms**)
 
 #### Note
-In task 2, I assume that the tiles and blocks are square and of the same size, but the matrix dimensions can be arbitrary. Below the is part of code that implement arbitrary matrix size.
+In task 2, I assume that the tiles and blocks are square and of the same size, but the matrix dimensions can be arbitrary. Below the is part of code that handle arbitrary matrix size.
 
 ```
 /* if p is not an multiple of TW and it is the last tile,
@@ -198,7 +198,7 @@ In task 2, I assume that the tiles and blocks are square and of the same size, b
 ``` 
  
 ### Task 3
- I implemented the multi-tiled strategy described in task 3. I use **NTB** to denote the number of adjacent tiles handled at one time. I started trials with **NTB** starting from 2 and incremented **NTB** at a time before **NTB** reaches 16. After that, I multiply **NTB** by 2 at a step. The following table shows the successful trials.
+ I implemented the multi-tiled strategy described in task 3. I use **NTB** to denote the number of adjacent tiles handled at one time. I started trials with **NTB** starting from 2 and incremented **NTB** at a time before **NTB** reaches 16. After that, I multiply **NTB** by 2 at a step. The following table shows the timings.
  
  
      | Grid Dimension | Block Dimension  | Tile Size | NTB | GPU TIME (ms)

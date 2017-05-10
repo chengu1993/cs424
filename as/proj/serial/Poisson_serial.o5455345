@@ -1,0 +1,50 @@
+/lustre/home/client/fas/cpsc424/cg736
+/lustre/home/client/fas/cpsc424/cg736/as/proj/serial
+compute-32-14
+compute-32-14
+compute-32-13
+compute-32-13
+icc -g -O3 -xHost -fno-alias -std=c99 -c poisson.c
+icc -g -O3 -xHost -fno-alias -std=c99 -c timing.c
+icc -o poisson -g -O3 -xHost -fno-alias -std=c99 poisson.o timing.o
+Stopping tolerance: 7.211105e-10
+Initial residuals: 7.211105e-04
+#CG iterations: 1500
+Final residuals: 3.088312e-05
+Wall clock time: 0.498843193054 seconds
+CPU time: 0.498925000000 seconds
+
+real	0m0.507s
+user	0m0.500s
+sys	0m0.002s
+Stopping tolerance: 4.559808e-11
+Initial residuals: 4.559808e-05
+#CG iterations: 1500
+Final residuals: 4.837400e-06
+Wall clock time: 10.761234045029 seconds
+CPU time: 10.763364000000 seconds
+
+real	0m10.779s
+user	0m10.771s
+sys	0m0.009s
+Stopping tolerance: 1.142177e-11
+Initial residuals: 1.142177e-05
+#CG iterations: 1500
+Final residuals: 1.889278e-06
+Wall clock time: 46.947668075562 seconds
+CPU time: 46.973859000000 seconds
+
+real	0m46.997s
+user	0m47.002s
+sys	0m0.019s
+Stopping tolerance: 2.858231e-12
+Initial residuals: 2.858231e-06
+#CG iterations: 1500
+Final residuals: 7.299413e-07
+Wall clock time: 188.411676168442 seconds
+CPU time: 188.507342000000 seconds
+
+real	3m8.581s
+user	3m8.604s
+sys	0m0.082s
+rm -f poisson *.o 

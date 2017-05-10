@@ -111,12 +111,14 @@ void conjugate_gradient(int Nz, FP *A, int *row, int *col, FP *b, int N) {
 
     printf("Stopping tolerance: %.6e\n", THRESHOLD);
     printf("Initial residuals: %.6e\n", sqrt(rho));
-
+    printf("CF storge efficiency %f\n", 12.);
+    printf("CSR storage efficiency %f\n", (2*Nz+N+1)*4./Nz);
     for (iter = 0; iter < MAX_ITERATION && sqrt(rho) >= THRESHOLD; iter++) {
         // r =rTr
         prev_rho = rho;
         rho = vecdot(r, r, N);
         //printf("current residuals: %f\n", sqrt(rho));
+        
         if (iter == 0) {
             // p = r;
             for (int i = 0; i < N; i++) {

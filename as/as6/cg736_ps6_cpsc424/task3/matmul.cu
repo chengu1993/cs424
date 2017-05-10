@@ -29,31 +29,31 @@ __global__ void gpu_matrixmult(FP *a,FP *b, FP *c, int n, int p, int m, int TW) 
   int row = ty + blockDim.y * blockIdx.y;
   int tile_num = (int) ceil((double)p/TW);
    
-    // handle the edge case where the last several block only need to calculate    // less than NTB blocks
-    int remaining_NTB = (Grid_Dim_X%NTB!=0&&blockIdx.x==gridDim.x-1) ? Grid_Dim_X%NTB : NTB;
-    for(int i=0; i<tile_num; i++) {
-	  atile[ty*TW+tx] = a[row*p + i*TW + tx];
-      int btile_idx = (i*TW+ty)*m + col;
-	  for(int kt=0; kt<remaining_NTB; kt++, btile_idx+=TW){
-		btile[ty*TW+tx] = b[btile_idx];
-		__syncthreads();
-    	/* if p is not an multiple of TW and it is the last tile,
-     	* the number of remaining elememnt is in this tile is p % TW
-     	* Otherwise, it is a full tile with TW elements*/
-		int boarder = ((p%TW) !=0 && i == tile_num-1) ? p % TW : TW; 
-		int indexa=ty*TW, indexb=tx;
-    	for(; indexa<ty*TW+boarder; indexa++,indexb+=TW) {
-	  	  cvalue[kt] += atile[indexa] * btile[indexb];
-		}
-		__syncthreads();
-  	  }
-    }  
-    int kt = 0, index = row * m + col;
-    while(row < n && col < m && kt < remaining_NTB){
-      c[index] = cvalue[kt];
-	  kt++;
-	  index += TW;
+  // handle the edge case where the last several block only need to calculate less than NTB blocks 
+  int remaining_NTB = (Grid_Dim_X%NTB!=0&&blockIdx.x==gridDim.x-1) ? Grid_Dim_X%NTB : NTB;
+  for(int i=0; i<tile_num; i++) {
+    atile[ty*TW+tx] = a[row*p + i*TW + tx];
+    int btile_idx = (i*TW+ty)*m + col;
+    for(int kt=0; kt<remaining_NTB; kt++, btile_idx+=TW){
+      btile[ty*TW+tx] = b[btile_idx];
+      __syncthreads();
+      /* if p is not an multiple of TW and it is the last tile,
+      * the number of remaining elememnt is in this tile is p % TW
+      * Otherwise, it is a full tile with TW elements*/
+      int boarder = ((p%TW) !=0 && i == tile_num-1) ? p % TW : TW; 
+      int indexa=ty*TW, indexb=tx;
+      for(; indexa<ty*TW+boarder; indexa++,indexb+=TW) {
+        cvalue[kt] += atile[indexa] * btile[indexb];
+      }
+      __syncthreads();
     }
+  }  
+  int kt = 0, index = row * m + col;
+  while(row < n && col < m && kt < remaining_NTB){
+    c[index] = cvalue[kt];
+    kt++;
+    index += TW;
+  }
 }
 
 

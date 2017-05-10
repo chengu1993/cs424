@@ -1,0 +1,70 @@
+GPU/Cuda/8.0(25):ERROR:105: Unable to locate a modulefile for 'module'
+GPU/Cuda/8.0(25):ERROR:105: Unable to locate a modulefile for 'list'
+/lustre/home/client/fas/cpsc424/cg736
+/lustre/home/client/fas/cpsc424/cg736/as/proj/cuda
+compute-45-4
+compute-45-4
+compute-45-4
+compute-45-4
+compute-45-4
+assigning gpu nvidia0
+/home/apps/fas/GPU/Cuda/8.0/bin/nvcc -Wno-deprecated-gpu-targets  -gencode=arch=compute_20,code=\"sm_20,compute_20\" -I/home/apps/fas/GPU/Cuda/8.0/include -O3 -o poisson.o -c poisson.cu
+/home/apps/fas/GPU/Cuda/8.0/bin/nvcc -Wno-deprecated-gpu-targets  -gencode=arch=compute_20,code=\"sm_20,compute_20\" -L/home/apps/fas/GPU/Cuda/8.0/lib64 -lcuda -lcudart -lm -o poisson poisson.o
+Device count = 3
+Nz: 145924
+Using device 0
+Setting up cuda memory
+Copy from host to cuda memory
+Stopping tolerance: 7.211105e-10
+Initial residuals: 7.211105e-04
+#CG iterations: 1500
+Final residuals: 3.088311e-05
+Time to calculate results on GPU: 0.348553 seconds.
+
+real	0m0.462s
+user	0m0.319s
+sys	0m0.130s
+Device count = 3
+Nz: 2353156
+Using device 0
+Setting up cuda memory
+Copy from host to cuda memory
+Stopping tolerance: 4.559808e-11
+Initial residuals: 4.559808e-05
+#CG iterations: 1500
+Final residuals: 4.837401e-06
+Time to calculate results on GPU: 5.330719 seconds.
+
+real	0m5.450s
+user	0m4.511s
+sys	0m0.921s
+Device count = 3
+Nz: 9424900
+Using device 0
+Setting up cuda memory
+Copy from host to cuda memory
+Stopping tolerance: 1.142177e-11
+Initial residuals: 1.142177e-05
+#CG iterations: 1500
+Final residuals: 1.889277e-06
+Time to calculate results on GPU: 18.534162 seconds.
+
+real	0m18.688s
+user	0m15.743s
+sys	0m2.916s
+Device count = 3
+Nz: 37724164
+Using device 0
+Setting up cuda memory
+Copy from host to cuda memory
+Stopping tolerance: 2.858231e-12
+Initial residuals: 2.858231e-06
+#CG iterations: 1500
+Final residuals: 7.299419e-07
+Time to calculate results on GPU: 70.105406 seconds.
+
+real	1m10.369s
+user	0m59.204s
+sys	0m11.110s
+rm -f *.o poisson
+unassigning gpu nvidia0
