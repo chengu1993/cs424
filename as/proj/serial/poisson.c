@@ -71,7 +71,7 @@ void initialize(FP *A, int *JR, int *JC, FP *b, int n, int N) {
 
 }
 
-
+// handle vector dot, return vec1 dot vec2
 FP vecdot(FP *vec1, FP *vec2, int N) {
   FP res = 0;
   for (int i = 0; i < N; i++) {
@@ -79,21 +79,20 @@ FP vecdot(FP *vec1, FP *vec2, int N) {
   }
   return res;
 }
-
+// handle vector opreations, res = vec1 + coef * vec2
 void vecop(FP *vec1, FP *vec2, FP *res, FP coef, int N) {
   for (int i = 0; i < N; i++) {
     res[i] = vec1[i] + coef * vec2[i];
   }
 }
-
-
+// handle matrix times vector, res = mat * vec
 void matmulvec(int Nz, FP *mat, int *row, int *col, FP *vec, FP *res, int N) {
   for (int i = 0; i < Nz; i++) {
     res[row[i]] += mat[i] * vec[col[i]];
   }
 }
 
-
+// conduct conjugate gradient iteration
 void conjugate_gradient(int Nz, FP *A, int *row, int *col, FP *b, int N) {
   int iter;
   double wcs = 0., wce = 0., cts = 0., cte = 0.;

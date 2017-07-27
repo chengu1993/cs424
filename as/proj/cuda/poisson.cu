@@ -284,8 +284,5 @@ int main(int argc, char *argv[]) {
   cudaFree(dev_q);
   cudaFree(dev_temp);
 
-  // cudaEventDestroy(start);
-  // cudaEventDestroy(stop);
-
   return 0;
 }
